@@ -1,4 +1,7 @@
-package org.example.gui;
+package org.example.dbs.gui;
+
+import org.example.dbs.Jdbc;
+import org.example.dbs.models.UserData;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Login extends Frame {
     TextField username, password;
@@ -32,7 +37,24 @@ public class Login extends Frame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(!username.getText().equals("") && !password.getText().equals("")){
-
+                    Jdbc jdbc = new Jdbc();
+                    jdbc.getConnection();
+                    String sql = "select * from `admin` where username = ?";
+                    List<Object> params = new ArrayList<>();
+                    params.add(username.getText());
+                    try {
+                        UserData findUser = jdbc.findSimpleRefResult(sql, params, UserData.class);
+                        if(findUser != null) {
+                            JOptionPane.showMessageDialog(frame,
+                                    "Username already exist, please try different name",
+                                    "Error Message",
+                                    JOptionPane.ERROR_MESSAGE);
+                        } else {
+                            // Coding for entering data to database
+                        }
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
                 } else {
                     JOptionPane.showMessageDialog(frame,
                             "Username or Password is empty",
