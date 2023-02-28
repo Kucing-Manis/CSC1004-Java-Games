@@ -4,18 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09630b29-dc79-4ac5-aec5-5f63d1aac8d1" name="Changes" comment="Transfer AnimationComponent and SpriteData, Create Register GUI, Add info in Readme">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/dbs/database.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/game/SimpleFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/Brother.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/Father.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/Father_Hero.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/Mother.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/Sister.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/Sister_Mage.png" afterDir="false" />
+    <list default="true" id="09630b29-dc79-4ac5-aec5-5f63d1aac8d1" name="Changes" comment="Add Sprite in Textures, Add SimpleFactory&#10;After this commit will try to change from Java AWT to JavaFx">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/MainGame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/userForm/DBUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/userForm/LoggedInController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/userForm/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/userForm/RegisterController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/userForm/StartScreenController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/userForm/loggedin.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/userForm/login.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/userForm/register.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/userForm/startscreen.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/images/Paper.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/images/Rock.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/images/Scissor.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dbs/database.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/textures/Brother.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/Wizard.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/textures/Father.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/Guard.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/textures/Father_Hero.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/Hero.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/textures/Mother.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/Healer.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/textures/Sister.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/Fighter.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/textures/Sister_Mage.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/Mage.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +36,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -54,11 +66,15 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Project/Java/CSC1004-Java-Games/src/main/resources/assets/textures",
+    "last_opened_file_path": "C:/Project/Java/CSC1004-Java-Games/lib/mysql-connector-j-8.0.32.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.4091954",
+    "settings.editor.selected.configurable": "preferences.JavaFX",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -120,7 +136,7 @@
       <updated>1676976161342</updated>
       <workItem from="1676976162512" duration="11799000" />
       <workItem from="1677206488633" duration="7117000" />
-      <workItem from="1677562276589" duration="8915000" />
+      <workItem from="1677562276589" duration="24677000" />
     </task>
     <task id="LOCAL-00001" summary="Login GUI 1">
       <created>1677209604842</created>
@@ -136,7 +152,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677565190880</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Add Sprite in Textures, Add SimpleFactory&#10;After this commit will try to change from Java AWT to JavaFx">
+      <created>1677578892997</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1677578892997</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -145,6 +168,11 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Login GUI 1" />
     <MESSAGE value="Transfer AnimationComponent and SpriteData, Create Register GUI, Add info in Readme" />
-    <option name="LAST_COMMIT_MESSAGE" value="Transfer AnimationComponent and SpriteData, Create Register GUI, Add info in Readme" />
+    <MESSAGE value="Add Sprite in Textures, Add SimpleFactory&#10;After this commit will try to change from Java AWT to JavaFx" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Sprite in Textures, Add SimpleFactory&#10;After this commit will try to change from Java AWT to JavaFx" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
