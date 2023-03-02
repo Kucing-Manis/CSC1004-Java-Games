@@ -10,34 +10,34 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.userForm.RegisterController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.userform.RegisterController">
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="206.0">
          <children>
             <ImageView id="2" fitHeight="409.0" fitWidth="225.0" layoutX="-9.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="0.0">
                <image>
-                  <Image url="@../../../../resources/assets/images/userform/BackgroundCharacter.jpeg" />
+                  <Image url="@assets/images/user-form-images/BackgroundCharacter.jpeg" />
                </image>
             </ImageView>
             <ImageView id="1" fitHeight="280.0" fitWidth="157.0" layoutX="-9.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../resources/assets/images/userform/Character.png" />
+                  <Image url="@assets/images/user-form-images/Character.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="8.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../resources/assets/images/userform/TextBubble.png" />
+                  <Image url="@assets/images/user-form-images/TextBubble.png" />
                </image>
             </ImageView>
-            <Label layoutX="36.0" layoutY="53.0" prefHeight="35.0" prefWidth="150.0" text="Create Account" textAlignment="CENTER">
+            <Label layoutX="33.0" layoutY="53.0" prefHeight="35.0" prefWidth="150.0" text="Create Account" textAlignment="CENTER">
                <font>
                   <Font name="Comic Sans MS Bold" size="20.0" />
                </font>
             </Label>
-            <Button layoutX="10.0" layoutY="14.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="29.0" style="-fx-background-color: trans;" />
-            <ImageView fx:id="button_back" fitHeight="49.0" fitWidth="35.0" layoutX="8.0" layoutY="358.0" pickOnBounds="true" preserveRatio="true">
+            <Button fx:id="button_back" layoutX="10.0" layoutY="14.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="29.0" style="-fx-background-color: trans;" />
+            <ImageView fitHeight="49.0" fitWidth="35.0" layoutX="8.0" layoutY="358.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../resources/assets/images/userform/Back.png" />
+                  <Image url="@assets/images/user-form-images/Back.png" />
                </image>
             </ImageView>
          </children>
@@ -46,7 +46,7 @@
          <children>
             <ImageView fitHeight="400.0" fitWidth="383.0" layoutX="8.0" opacity="0.84" pickOnBounds="true">
                <image>
-                  <Image url="@../../../../resources/assets/images/userform/Background.jpg" />
+                  <Image url="@assets/images/user-form-images/Background.jpg" />
                </image>
                <rotationAxis>
                   <Point3D />
@@ -75,22 +75,22 @@
             </TextField>
             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="45.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../resources/assets/images/userform/Person.png" />
+                  <Image url="@assets/images/user-form-images/Person.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="45.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../resources/assets/images/userform/Email.png" />
+                  <Image url="@assets/images/user-form-images/Email.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="45.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../resources/assets/images/userform/Password.png" />
+                  <Image url="@assets/images/user-form-images/Password.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="45.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../resources/assets/images/userform/Password.png" />
+                  <Image url="@assets/images/user-form-images/Password.png" />
                </image>
             </ImageView>
             <Button fx:id="button_register" layoutX="149.0" layoutY="309.0" mnemonicParsing="false" text="Register">

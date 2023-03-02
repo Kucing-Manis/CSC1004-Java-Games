@@ -1,4 +1,4 @@
-package org.example.userForm;
+package org.example.userform;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -7,12 +7,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LoggedInController implements Initializable {
     @FXML
-    private Button button_logout;
+    private Button button_start, button_logout;
     @FXML
     private Label label_text_cloud, label_title;
     @Override
@@ -20,7 +21,11 @@ public class LoggedInController implements Initializable {
         button_logout.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                DBUtils.changeScene(event, "login.fxml", "Login", null);
+                try {
+                    DBUtils.changeScene(event, "LoginUser.fxml", "Login", null);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
     }

@@ -1,4 +1,4 @@
-package org.example.userForm;
+package org.example.userform;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -12,12 +12,12 @@ import java.io.IOException;
 import java.sql.*;
 
 public class DBUtils {
-    public static void changeScene(ActionEvent event, String fxmlFile, String title, String username) {
-        Parent root = null;
+    public static void changeScene(ActionEvent event, String fxmlFile, String title, String username) throws IOException {
+        Parent root = FXMLLoader.load(DBUtils.class.getClassLoader().getResource((fxmlFile)));
 
-        if (username != null) {
+        if (!username.isEmpty()) {
             try {
-                FXMLLoader loader = new FXMLLoader(DBUtils.class.getResource(fxmlFile));
+                FXMLLoader loader = new FXMLLoader(DBUtils.class.getClassLoader().getResource(fxmlFile));
                 root = loader.load();
                 LoggedInController loggedInController = loader.getController();
                 loggedInController.setUserData(username);
@@ -26,7 +26,7 @@ public class DBUtils {
             }
         } else {
             try {
-                root = FXMLLoader.load(DBUtils.class.getResource(fxmlFile));
+                root = FXMLLoader.load(DBUtils.class.getClassLoader().getResource(fxmlFile));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -56,7 +56,7 @@ public class DBUtils {
                 alert.setContentText("This username has been taken\nPlease use another name");
                 alert.show();
             } else {
-                psInsert = connection.prepareStatement("INSERT INTO users (username, password, email VALUES (?,?,?))");
+                psInsert = connection.prepareStatement("INSERT INTO users (username, password, email) VALUES (?, ?, ?)");
                 psInsert.setString(1, username);
                 psInsert.setString(2, password);
                 psInsert.setString(3, email);
@@ -67,10 +67,12 @@ public class DBUtils {
                 alert.setContentText("Your registration has been successful");
                 alert.show();
 
-                changeScene(event, "loggedin.fxml", "Welcome " + username, username);
+                changeScene(event, "FinishLogin.fxml", "Welcome " + username, username);
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         } finally {
             if (resultSet != null) {
                 try {
@@ -125,7 +127,7 @@ public class DBUtils {
                 while (resultSet.next()) {
                     String dbPassword = resultSet.getString("password");
                     if (dbPassword.equals(password)) {
-                        changeScene(event, "loggedin.fxml", "Welcome " + username, username);
+                        changeScene(event, "FinishLogin.fxml", "Welcome " + username, username);
                     } else {
                         System.out.println("Password did not match");
                         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -137,6 +139,8 @@ public class DBUtils {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         } finally {
             if (resultSet != null) {
                 try {

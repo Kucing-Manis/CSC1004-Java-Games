@@ -4,29 +4,50 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09630b29-dc79-4ac5-aec5-5f63d1aac8d1" name="Changes" comment="Add Sprite in Textures, Add SimpleFactory&#10;After this commit will try to change from Java AWT to JavaFx">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/MainGame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/userForm/DBUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/userForm/LoggedInController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/userForm/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/userForm/RegisterController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/userForm/StartScreenController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/userForm/loggedin.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/userForm/login.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/userForm/register.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/userForm/startscreen.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/images/Paper.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/images/Rock.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/images/Scissor.png" afterDir="false" />
+    <list default="true" id="09630b29-dc79-4ac5-aec5-5f63d1aac8d1" name="Changes" comment="Fxml Database almost finish">
+      <change afterPath="$PROJECT_DIR$/lib/Maven__com_google_protobuf_protobuf_java_3_19_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Maven__mysql_mysql_connector_java_8_0_30.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Maven__org_apiguardian_apiguardian_api_1_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Maven__org_controlsfx_controlsfx_11_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Maven__org_junit_jupiter_junit_jupiter_api_5_8_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Maven__org_junit_jupiter_junit_jupiter_engine_5_8_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Maven__org_junit_platform_junit_platform_commons_1_8_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Maven__org_junit_platform_junit_platform_engine_1_8_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Maven__org_kordamp_bootstrapfx_bootstrapfx_core_0_4_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Maven__org_openjfx_javafx_base_18_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Maven__org_openjfx_javafx_base_win_18_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Maven__org_openjfx_javafx_controls_18_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Maven__org_openjfx_javafx_controls_win_18_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Maven__org_openjfx_javafx_fxml_18_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Maven__org_openjfx_javafx_fxml_win_18_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Maven__org_openjfx_javafx_graphics_18_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Maven__org_openjfx_javafx_graphics_win_18_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Maven__org_opentest4j_opentest4j_1_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/mysql-connector-j-8.0.32.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/FinishLogin.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/images/user-form-images/Back.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/images/user-form-images/Background.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/images/user-form-images/BackgroundCharacter.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/images/user-form-images/Character.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/images/user-form-images/Email.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/images/user-form-images/Lock.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/images/user-form-images/Password.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/images/user-form-images/Person.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/images/user-form-images/TextBubble.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dbs/database.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/textures/Brother.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/Wizard.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/textures/Father.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/Guard.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/textures/Father_Hero.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/Hero.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/textures/Mother.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/Healer.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/textures/Sister.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/Fighter.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/textures/Sister_Mage.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/Mage.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/userform/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/userForm/DBUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/userform/DBUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/userForm/LoggedInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/userform/LoggedInController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/userForm/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/userform/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/userForm/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/userform/RegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/userForm/StartScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/userform/StartScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/userForm/loggedin.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/userForm/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/LoginUser.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/userForm/register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/RegisterUser.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/userForm/startscreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/startscreen.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +87,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Project/Java/CSC1004-Java-Games/lib/mysql-connector-j-8.0.32.jar",
+    "last_opened_file_path": "C:/Project/Java/CSC1004-Java-Games/src/main/java/org/example",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -74,21 +95,27 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.4091954",
-    "settings.editor.selected.configurable": "preferences.JavaFX",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\resources\assets\textures" />
-      <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\java\org\example\dbs" />
-      <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\java\org\example\game\animation" />
       <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\java\org\example" />
       <recent name="C:\Project\Java\CSC1004-Java-Games" />
+      <recent name="C:\Project\Java\CSC1004-Java-Games\lib" />
+      <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\resources\assets\textures" />
+      <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\java\org\example\dbs" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\resources\assets" />
-      <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\resources\assets\textures" />
+      <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\resources" />
+      <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\resources\org.example\userform" />
+      <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\resources\fxml" />
+      <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\java\org\example\userform" />
+      <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\java" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="org.example.userform" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="org.example.dbs.models" />
@@ -98,7 +125,22 @@
     <configuration name="CSC1004-Java-Games [compile]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
       <MavenSettings>
         <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
+        <option name="myRunnerSettings">
+          <MavenRunnerSettings>
+            <option name="delegateBuildToMaven" value="false" />
+            <option name="environmentProperties">
+              <map />
+            </option>
+            <option name="jreName" value="#USE_PROJECT_JDK" />
+            <option name="mavenProperties">
+              <map />
+            </option>
+            <option name="passParentEnv" value="true" />
+            <option name="runMavenInBackground" value="true" />
+            <option name="skipTests" value="false" />
+            <option name="vmOptions" value="-- module-path ${PATH_TO_FX} --add-modules javafx.fxml,javafx.controls,javafx.graphics" />
+          </MavenRunnerSettings>
+        </option>
         <option name="myRunnerParameters">
           <MavenRunnerParameters>
             <option name="profiles">
@@ -136,7 +178,8 @@
       <updated>1676976161342</updated>
       <workItem from="1676976162512" duration="11799000" />
       <workItem from="1677206488633" duration="7117000" />
-      <workItem from="1677562276589" duration="24677000" />
+      <workItem from="1677562276589" duration="26982000" />
+      <workItem from="1677724088600" duration="16633000" />
     </task>
     <task id="LOCAL-00001" summary="Login GUI 1">
       <created>1677209604842</created>
@@ -159,7 +202,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677578892997</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Fxml Database almost finish">
+      <created>1677606484727</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1677606484727</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -169,7 +219,8 @@
     <MESSAGE value="Login GUI 1" />
     <MESSAGE value="Transfer AnimationComponent and SpriteData, Create Register GUI, Add info in Readme" />
     <MESSAGE value="Add Sprite in Textures, Add SimpleFactory&#10;After this commit will try to change from Java AWT to JavaFx" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Sprite in Textures, Add SimpleFactory&#10;After this commit will try to change from Java AWT to JavaFx" />
+    <MESSAGE value="Fxml Database almost finish" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fxml Database almost finish" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

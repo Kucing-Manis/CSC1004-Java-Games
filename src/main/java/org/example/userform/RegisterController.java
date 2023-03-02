@@ -1,4 +1,4 @@
-package org.example.userForm;
+package org.example.userform;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -45,7 +46,11 @@ public class RegisterController implements Initializable {
         button_back.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                DBUtils.changeScene(event, "login.fxml", "Login", null);
+                try {
+                    DBUtils.changeScene(event, "LoginUser.fxml", "Login", null);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
     }
