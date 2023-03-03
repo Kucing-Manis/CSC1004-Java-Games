@@ -7,16 +7,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import org.example.MainGame;
 
 import java.io.IOException;
 import java.sql.*;
 
 public class DBUtils {
     public static void changeScene(ActionEvent event, String fxmlFile, String title, String username) throws IOException {
-        Parent root = FXMLLoader.load(DBUtils.class.getClassLoader().getResource((fxmlFile)));
+        Parent root = null;
 
-        if (!username.isEmpty()) {
+        if (username != null) {
             try {
+                System.out.println(fxmlFile);
+                System.out.println(new FXMLLoader(DBUtils.class.getClassLoader().getResource(fxmlFile)));
                 FXMLLoader loader = new FXMLLoader(DBUtils.class.getClassLoader().getResource(fxmlFile));
                 root = loader.load();
                 LoggedInController loggedInController = loader.getController();
@@ -26,15 +29,20 @@ public class DBUtils {
             }
         } else {
             try {
-                root = FXMLLoader.load(DBUtils.class.getClassLoader().getResource(fxmlFile));
+                System.out.println("2:" + fxmlFile);
+                System.out.println(new FXMLLoader(DBUtils.class.getClassLoader().getResource(fxmlFile)));
+                FXMLLoader loader = new FXMLLoader(DBUtils.class.getClassLoader().getResource(fxmlFile));
+                root = loader.load();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle(title);
-        stage.setScene(new Scene(root, 600, 400));
-        stage.show();
+        if(root != null){
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle(title);
+            stage.setScene(new Scene(root, 600, 400));
+            stage.show();
+        }
     }
 
     public static void register(ActionEvent event, String username, String email, String password) {
@@ -127,7 +135,8 @@ public class DBUtils {
                 while (resultSet.next()) {
                     String dbPassword = resultSet.getString("password");
                     if (dbPassword.equals(password)) {
-                        changeScene(event, "FinishLogin.fxml", "Welcome " + username, username);
+//                        changeScene(event, "FinishLogin.fxml", "Welcome " + username, username);
+                        MainGame.runGame();
                     } else {
                         System.out.println("Password did not match");
                         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -139,8 +148,8 @@ public class DBUtils {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
         } finally {
             if (resultSet != null) {
                 try {

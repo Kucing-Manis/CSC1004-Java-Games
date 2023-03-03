@@ -1,4 +1,4 @@
-module org.example.userform {
+module org.example {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
@@ -11,4 +11,6 @@ module org.example.userform {
 //    exports org.example;
     opens org.example.userform to javafx.fxml;
     exports org.example.userform;
+    opens org.example to org.almasb.fxgl.core;
+    exports org.example;
 }

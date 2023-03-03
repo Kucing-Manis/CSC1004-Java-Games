@@ -4,10 +4,20 @@ import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
+import javafx.stage.Stage;
 import org.example.game.animation.AnimationComponent;
 import org.example.game.animation.SpriteData;
 
 public class MainGame extends GameApplication {
+    public void runGame() {
+//        GameApplication app2 = MainGame.newInstance();
+        Stage anotherStage = new Stage();
+//        app2.start(anotherStage);
+        start(anotherStage);
+//        String[] a = {""};
+//        launch(a);
+    }
+
     @Override
     protected void initSettings(GameSettings settings) {
         settings.setWidth(1280);
