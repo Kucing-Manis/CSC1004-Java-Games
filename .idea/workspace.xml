@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09630b29-dc79-4ac5-aec5-5f63d1aac8d1" name="Changes" comment="Fxml Database finish but still have some bug and error">
-      <change afterPath="$PROJECT_DIR$/logs/FXGL-01-Mar-2023-01.22.47.log" afterDir="false" />
+    <list default="true" id="09630b29-dc79-4ac5-aec5-5f63d1aac8d1" name="Changes" comment="Add more info to README.md">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/LoginUser.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +139,8 @@
       <workItem from="1677206488633" duration="7117000" />
       <workItem from="1677562276589" duration="26982000" />
       <workItem from="1677724088600" duration="16928000" />
-      <workItem from="1677768782237" duration="717000" />
+      <workItem from="1677768782237" duration="1032000" />
+      <workItem from="1677826795503" duration="324000" />
     </task>
     <task id="LOCAL-00001" summary="Login GUI 1">
       <created>1677209604842</created>
@@ -177,11 +177,29 @@
       <option name="project" value="LOCAL" />
       <updated>1677764800675</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Add more info to README.md">
+      <created>1677769808928</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1677769808928</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Login GUI 1" />
@@ -189,7 +207,8 @@
     <MESSAGE value="Add Sprite in Textures, Add SimpleFactory&#10;After this commit will try to change from Java AWT to JavaFx" />
     <MESSAGE value="Fxml Database almost finish" />
     <MESSAGE value="Fxml Database finish but still have some bug and error" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fxml Database finish but still have some bug and error" />
+    <MESSAGE value="Add more info to README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add more info to README.md" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
