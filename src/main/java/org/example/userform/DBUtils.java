@@ -18,8 +18,8 @@ public class DBUtils {
 
         if (username != null) {
             try {
-                System.out.println(fxmlFile);
-                System.out.println(new FXMLLoader(DBUtils.class.getClassLoader().getResource(fxmlFile)));
+//                System.out.println(fxmlFile);
+//                System.out.println(new FXMLLoader(DBUtils.class.getClassLoader().getResource(fxmlFile)));
                 FXMLLoader loader = new FXMLLoader(DBUtils.class.getClassLoader().getResource(fxmlFile));
                 root = loader.load();
                 LoggedInController loggedInController = loader.getController();
@@ -29,8 +29,8 @@ public class DBUtils {
             }
         } else {
             try {
-                System.out.println("2:" + fxmlFile);
-                System.out.println(new FXMLLoader(DBUtils.class.getClassLoader().getResource(fxmlFile)));
+//                System.out.println("2:" + fxmlFile);
+//                System.out.println(new FXMLLoader(DBUtils.class.getClassLoader().getResource(fxmlFile)));
                 FXMLLoader loader = new FXMLLoader(DBUtils.class.getClassLoader().getResource(fxmlFile));
                 root = loader.load();
             } catch (IOException e) {
@@ -75,7 +75,7 @@ public class DBUtils {
                 alert.setContentText("Your registration has been successful");
                 alert.show();
 
-                changeScene(event, "FinishLogin.fxml", "Welcome " + username, username);
+                changeScene(event, "LoginUser.fxml", "Welcome " + username, username);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -135,8 +135,7 @@ public class DBUtils {
                 while (resultSet.next()) {
                     String dbPassword = resultSet.getString("password");
                     if (dbPassword.equals(password)) {
-//                        changeScene(event, "FinishLogin.fxml", "Welcome " + username, username);
-                        MainGame.runGame();
+                        changeScene(event, "FinishLogin.fxml", "Welcome " + username, username);
                     } else {
                         System.out.println("Password did not match");
                         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -148,8 +147,8 @@ public class DBUtils {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         } finally {
             if (resultSet != null) {
                 try {

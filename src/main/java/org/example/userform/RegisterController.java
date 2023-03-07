@@ -7,6 +7,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.net.URL;
@@ -42,7 +44,11 @@ public class RegisterController implements Initializable {
 
             }
         });
-
+        Image img = new Image("assets/images/user-form-images/Back.png");
+        ImageView button_back_image = new ImageView(img);
+        button_back_image.setFitHeight(45);
+        button_back_image.setPreserveRatio(true);
+        button_back.setGraphic(button_back_image);
         button_back.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

@@ -4,14 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09630b29-dc79-4ac5-aec5-5f63d1aac8d1" name="Changes" comment="Add more info to README.md">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/LoginUser.fxml" afterDir="false" />
+    <list default="true" id="09630b29-dc79-4ac5-aec5-5f63d1aac8d1" name="Changes" comment="Fixed the login and resgitration. Trying to connect fxml to fxgl">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/game/view/GameGUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/game/view/MainMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-01-Mar-2023-01.22.47.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MainGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/MainGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/game/SimpleFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/game/EnemyFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/userform/DBUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/userform/DBUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/FinishLogin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FinishLogin.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/userform/LoggedInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/userform/LoggedInController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/userform/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/userform/RegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/userform/StartScreenController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/RegisterUser.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/RegisterUser.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/startscreen.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +28,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -45,24 +52,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Project/Java/CSC1004-Java-Games/src/main/resources/assets",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.4091954",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Project/Java/CSC1004-Java-Games/src/main/resources/assets&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.4091954&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\resources\assets" />
@@ -72,11 +79,14 @@
       <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\resources\assets\textures" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\java\org\example\game\view" />
       <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\resources" />
       <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\resources\org.example\userform" />
       <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\resources\fxml" />
       <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\java\org\example\userform" />
-      <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\java" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="org.example.game.ui" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="org.example.userform" />
@@ -145,7 +155,8 @@
       <workItem from="1677562276589" duration="26982000" />
       <workItem from="1677724088600" duration="16928000" />
       <workItem from="1677768782237" duration="1032000" />
-      <workItem from="1677826795503" duration="4915000" />
+      <workItem from="1677826795503" duration="5158000" />
+      <workItem from="1678174937915" duration="17735000" />
     </task>
     <task id="LOCAL-00001" summary="Login GUI 1">
       <created>1677209604842</created>
@@ -196,7 +207,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677827131206</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Fixed the login and resgitration. Trying to connect fxml to fxgl">
+      <created>1677831921763</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1677831921763</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -220,7 +238,8 @@
     <MESSAGE value="Fxml Database almost finish" />
     <MESSAGE value="Fxml Database finish but still have some bug and error" />
     <MESSAGE value="Add more info to README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add more info to README.md" />
+    <MESSAGE value="Fixed the login and resgitration. Trying to connect fxml to fxgl" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed the login and resgitration. Trying to connect fxml to fxgl" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
