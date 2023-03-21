@@ -25,7 +25,8 @@ public class GameGUI {
             }
         });
 
-        settings.setTicksPerSecond(60); // check info : settings.setProfilingEnabled(true);
+        settings.setTicksPerSecond(60);
+// check info : settings.setProfilingEnabled(true);
 //        settings.setFontUI("arcade_classic.ttf");
 //        settings.setFontText("arcade_classic.ttf");
 //        settings.setFontGame("arcade_classic.ttf");

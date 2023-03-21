@@ -4,20 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09630b29-dc79-4ac5-aec5-5f63d1aac8d1" name="Changes" comment="Fixed the login and resgitration. Trying to connect fxml to fxgl">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/game/view/GameGUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/game/view/MainMenu.java" afterDir="false" />
+    <list default="true" id="09630b29-dc79-4ac5-aec5-5f63d1aac8d1" name="Changes" comment="Trying to change scene from FXGL to fxml and from fxml to FXGL. Still failed. Maybe will remove the fxml file and just create it from FXGL">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/FXGL-01-Mar-2023-01.22.47.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MainGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/MainGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/game/SimpleFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/game/EnemyFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/userform/DBUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/userform/DBUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/game/animation/AnimationComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/game/animation/AnimationComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/game/view/GameGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/game/view/GameGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/userform/LoggedInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/userform/LoggedInController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/userform/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/userform/RegisterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/userform/StartScreenController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/RegisterUser.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/RegisterUser.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/startscreen.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +149,10 @@
       <workItem from="1677724088600" duration="16928000" />
       <workItem from="1677768782237" duration="1032000" />
       <workItem from="1677826795503" duration="5158000" />
-      <workItem from="1678174937915" duration="17735000" />
+      <workItem from="1678174937915" duration="17812000" />
+      <workItem from="1678431899786" duration="1454000" />
+      <workItem from="1678782259813" duration="5231000" />
+      <workItem from="1679384120197" duration="5011000" />
     </task>
     <task id="LOCAL-00001" summary="Login GUI 1">
       <created>1677209604842</created>
@@ -214,7 +210,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677831921763</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Trying to change scene from FXGL to fxml and from fxml to FXGL. Still failed. Maybe will remove the fxml file and just create it from FXGL">
+      <created>1678211255811</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1678211255811</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -239,7 +242,8 @@
     <MESSAGE value="Fxml Database finish but still have some bug and error" />
     <MESSAGE value="Add more info to README.md" />
     <MESSAGE value="Fixed the login and resgitration. Trying to connect fxml to fxgl" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed the login and resgitration. Trying to connect fxml to fxgl" />
+    <MESSAGE value="Trying to change scene from FXGL to fxml and from fxml to FXGL. Still failed. Maybe will remove the fxml file and just create it from FXGL" />
+    <option name="LAST_COMMIT_MESSAGE" value="Trying to change scene from FXGL to fxml and from fxml to FXGL. Still failed. Maybe will remove the fxml file and just create it from FXGL" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

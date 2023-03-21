@@ -34,12 +34,16 @@ public class LoggedInController extends FXGLMenu implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         button_start.setOnAction(
-            new EventHandler<ActionEvent>(){
-                @Override
-                public void handle(ActionEvent event) {
-                    switchToMainMenu();
-                }
-        });
+                new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                    Stage stage = (Stage) button_start.getScene().getWindow();
+                    stage.close();
+                        fireNewGame();
+                    stage.show();
+                        fireExitToMainMenu();
+                    }
+                });
         button_logout.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -51,14 +55,18 @@ public class LoggedInController extends FXGLMenu implements Initializable {
             }
         });
     }
-    public void setUserData(String username){
+
+    public void setUserData(String username) {
         label_text_cloud.setText("Hi " + username + "!");
         label_title.setText("Rock Paper Scissor RPG V0.1");
     }
 
-    private void switchToMainMenu(){
+//    private void switchToMainMenu(){
+//        Stage stage = (Stage) closeButton.getScene().getWindow();
+//        stage.close();
 //        fireNewGame();
-        String[] a = {""};
-        MainGame.launch(a);
-    }
+////        fireExitToMainMenu();
+////        String[] a = {""};
+////        MainGame.launch(a);
+//    }
 }

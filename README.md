@@ -18,3 +18,12 @@ To make the game more interesting, I will probably add a special ability call â€
 
 Story:
 Not yet
+
+Step:
+1. Fix Login and Main Menu Path 
+2. Animation Fix Bettter
+3. Game GUI 
+4. Enemy Spawn Factory 
+5. Enemy and Character Data 
+6. Gameplay 1 battle (Check finish if hp player or enemy = 0)
+7. Infinite Loop Level
