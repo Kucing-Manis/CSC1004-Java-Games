@@ -4,13 +4,48 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09630b29-dc79-4ac5-aec5-5f63d1aac8d1" name="Changes" comment="Trying to change scene from FXGL to fxml and from fxml to FXGL. Still failed. Maybe will remove the fxml file and just create it from FXGL">
+    <list default="true" id="09630b29-dc79-4ac5-aec5-5f63d1aac8d1" name="Changes" comment="Add userdbs.sql">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/GameConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/GameType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/db/JdbcUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/view/GameLoadingScene.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/view/GameMainMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/view/GameStartupScene.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/view/MainMenuButton.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/ui/cursor.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MainGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/MainGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/game/animation/AnimationComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/game/animation/AnimationComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/game/view/GameGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/game/view/GameGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MainGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/RPSApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dbs/Jdbc.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dbs/gui/Login.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dbs/gui/Register.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dbs/models/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dbs/models/UserData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dbs/newsSystem.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/game/EnemyFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/GameEntitiyFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/game/animation/AnimationComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/animation/AnimationComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/game/animation/SpriteData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/animation/SpriteData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/game/view/GameGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/view/GameGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/game/view/MainMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/userform/DBUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/userform/DBUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/userform/LoggedInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/userform/LoggedInController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/userform/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/userform/RegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/userform/userdbs.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FinishLogin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FinishLogin.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/LoginUser.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/LoginUser.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/RegisterUser.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/RegisterUser.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/images/Paper.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/ui/Paper.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/images/Rock.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/ui/Rock.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/images/Scissor.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/ui/Scissor.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/images/user-form-images/Back.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/menu/Back.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/images/user-form-images/Background.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/menu/Background.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/images/user-form-images/BackgroundCharacter.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/menu/BackgroundCharacter.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/images/user-form-images/Character.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/menu/Character.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/images/user-form-images/Email.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/menu/Email.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/images/user-form-images/Lock.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/menu/Lock.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/images/user-form-images/Password.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/menu/Password.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/images/user-form-images/Person.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/menu/Person.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/images/user-form-images/TextBubble.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/menu/TextBubble.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,38 +80,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Project/Java/CSC1004-Java-Games/src/main/resources/assets&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.4091954&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Project/Java/CSC1004-Java-Games/src/main/resources/assets/ui",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.4091954",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\resources\assets\ui" />
       <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\resources\assets" />
       <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\java\org\example" />
       <recent name="C:\Project\Java\CSC1004-Java-Games" />
       <recent name="C:\Project\Java\CSC1004-Java-Games\lib" />
-      <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\resources\assets\textures" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\resources\assets" />
+      <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\java\org\example\userform" />
       <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\java\org\example\game\view" />
       <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\resources" />
       <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\resources\org.example\userform" />
-      <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\resources\fxml" />
-      <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\java\org\example\userform" />
     </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="org.example.game.ui" />
@@ -85,6 +120,7 @@
       <recent name="org.example.userform" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.example.game.view" />
       <recent name="org.example.dbs.models" />
     </key>
   </component>
@@ -152,7 +188,9 @@
       <workItem from="1678174937915" duration="17812000" />
       <workItem from="1678431899786" duration="1454000" />
       <workItem from="1678782259813" duration="5231000" />
-      <workItem from="1679384120197" duration="5011000" />
+      <workItem from="1679384120197" duration="5284000" />
+      <workItem from="1679631912660" duration="867000" />
+      <workItem from="1679989890020" duration="7510000" />
     </task>
     <task id="LOCAL-00001" summary="Login GUI 1">
       <created>1677209604842</created>
@@ -217,7 +255,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678211255811</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Add userdbs.sql">
+      <created>1679396172638</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1679396172638</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -243,7 +288,8 @@
     <MESSAGE value="Add more info to README.md" />
     <MESSAGE value="Fixed the login and resgitration. Trying to connect fxml to fxgl" />
     <MESSAGE value="Trying to change scene from FXGL to fxml and from fxml to FXGL. Still failed. Maybe will remove the fxml file and just create it from FXGL" />
-    <option name="LAST_COMMIT_MESSAGE" value="Trying to change scene from FXGL to fxml and from fxml to FXGL. Still failed. Maybe will remove the fxml file and just create it from FXGL" />
+    <MESSAGE value="Add userdbs.sql" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add userdbs.sql" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

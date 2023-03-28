@@ -15,17 +15,17 @@
          <children>
             <ImageView id="2" fitHeight="400.0" fitWidth="225.0" layoutX="-9.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="1.0">
                <image>
-                  <Image url="@assets/images/user-form-images/BackgroundCharacter.jpeg" />
+                  <Image url="@assets/menu/BackgroundCharacter.jpeg" />
                </image>
             </ImageView>
             <ImageView id="1" fitHeight="280.0" fitWidth="157.0" layoutX="-9.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/images/user-form-images/Character.png" />
+                  <Image url="@assets/menu/Character.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/images/user-form-images/TextBubble.png" />
+                  <Image url="@assets/menu/TextBubble.png" />
                </image>
             </ImageView>
             <Label fx:id="label_text_cloud" alignment="CENTER" contentDisplay="CENTER" layoutX="-45.0" layoutY="52.0" prefHeight="35.0" prefWidth="305.0" text="Hi User!" textAlignment="CENTER" textOverrun="CENTER_WORD_ELLIPSIS">
@@ -39,7 +39,7 @@
          <children>
             <ImageView fx:id="label_no_account" fitHeight="400.0" fitWidth="383.0" layoutX="8.0" layoutY="1.0" opacity="0.84" pickOnBounds="true">
                <image>
-                  <Image url="@assets/images/user-form-images/Background.jpg" />
+                  <Image url="@assets/menu/Background.jpg" />
                </image>
             </ImageView>
             <Line endX="8.0" startX="7.7491455078125" startY="400.0" />

@@ -16,17 +16,17 @@
          <children>
             <ImageView id="2" fitHeight="400.0" fitWidth="225.0" layoutX="-9.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="1.0">
                <image>
-                  <Image url="@assets/images/user-form-images/BackgroundCharacter.jpeg" />
+                  <Image url="@assets/menu/BackgroundCharacter.jpeg" />
                </image>
             </ImageView>
             <ImageView id="1" fitHeight="280.0" fitWidth="157.0" layoutX="-9.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/images/user-form-images/Character.png" />
+                  <Image url="@assets/menu/Character.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/images/user-form-images/TextBubble.png" />
+                  <Image url="@assets/menu/TextBubble.png" />
                </image>
             </ImageView>
             <Label layoutX="41.0" layoutY="53.0" prefHeight="35.0" prefWidth="150.0" text="Login Account" textAlignment="CENTER">
@@ -40,7 +40,7 @@
          <children>
             <ImageView fx:id="label_no_account" fitHeight="400.0" fitWidth="383.0" layoutX="8.0" layoutY="1.0" opacity="0.84" pickOnBounds="true">
                <image>
-                  <Image url="@assets/images/user-form-images/Background.jpg" />
+                  <Image url="@assets/menu/Background.jpg" />
                </image>
                <rotationAxis>
                   <Point3D />
@@ -59,12 +59,12 @@
             </TextField>
             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="60.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/images/user-form-images/Person.png" />
+                  <Image url="@assets/menu/Person.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="59.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/images/user-form-images/Password.png" />
+                  <Image url="@assets/menu/Password.png" />
                </image>
             </ImageView>
             <Button fx:id="button_login" layoutX="163.0" layoutY="230.0" mnemonicParsing="false" text="Login">

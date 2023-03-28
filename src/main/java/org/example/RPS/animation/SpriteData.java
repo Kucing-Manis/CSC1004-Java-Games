@@ -1,4 +1,4 @@
-package org.example.game.animation;
+package org.example.RPS.animation;
 
 public class SpriteData {
     // Name - Row - Width - Height - Time Second - Start - End

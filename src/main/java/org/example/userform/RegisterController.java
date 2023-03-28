@@ -44,7 +44,7 @@ public class RegisterController implements Initializable {
 
             }
         });
-        Image img = new Image("assets/images/user-form-images/Back.png");
+        Image img = new Image("assets/menu/Back.png");
         ImageView button_back_image = new ImageView(img);
         button_back_image.setFitHeight(45);
         button_back_image.setPreserveRatio(true);

@@ -16,17 +16,17 @@
          <children>
             <ImageView id="2" fitHeight="409.0" fitWidth="225.0" layoutX="-9.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="0.0">
                <image>
-                  <Image url="@assets/images/user-form-images/BackgroundCharacter.jpeg" />
+                  <Image url="@assets/menu/BackgroundCharacter.jpeg" />
                </image>
             </ImageView>
             <ImageView id="1" fitHeight="280.0" fitWidth="157.0" layoutX="-9.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/images/user-form-images/Character.png" />
+                  <Image url="@assets/menu/Character.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="8.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/images/user-form-images/TextBubble.png" />
+                  <Image url="@assets/menu/TextBubble.png" />
                </image>
             </ImageView>
             <Label layoutX="33.0" layoutY="53.0" prefHeight="35.0" prefWidth="150.0" text="Create Account" textAlignment="CENTER">
@@ -41,7 +41,7 @@
          <children>
             <ImageView fitHeight="400.0" fitWidth="383.0" layoutX="8.0" opacity="0.84" pickOnBounds="true">
                <image>
-                  <Image url="@assets/images/user-form-images/Background.jpg" />
+                  <Image url="@assets/menu/Background.jpg" />
                </image>
                <rotationAxis>
                   <Point3D />
@@ -70,22 +70,22 @@
             </TextField>
             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="45.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/images/user-form-images/Person.png" />
+                  <Image url="@assets/menu/Person.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="45.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/images/user-form-images/Email.png" />
+                  <Image url="@assets/menu/Email.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="45.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/images/user-form-images/Password.png" />
+                  <Image url="@assets/menu/Password.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="45.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/images/user-form-images/Password.png" />
+                  <Image url="@assets/menu/Password.png" />
                </image>
             </ImageView>
             <Button fx:id="button_register" layoutX="149.0" layoutY="309.0" mnemonicParsing="false" text="Register">

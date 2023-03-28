@@ -1,4 +1,4 @@
-package org.example.game;
+package org.example.RPS;
 
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
@@ -8,7 +8,7 @@ import com.almasb.fxgl.entity.Spawns;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class EnemyFactory implements EntityFactory {
+public class GameEntitiyFactory implements EntityFactory {
 
     @Spawns("enemy")
     public Entity newEnemy(SpawnData enemyData) {
