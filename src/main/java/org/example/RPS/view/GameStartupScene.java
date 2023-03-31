@@ -7,7 +7,7 @@ import javafx.scene.layout.StackPane;
 public class GameStartupScene extends StartupScene {
     public GameStartupScene(int appWidth, int appHeight) {
         super(appWidth, appHeight);
-        StackPane pane = new StackPane(new ImageView(getClass().getClassLoader().getResource("assets/menu/Character.png").toExternalForm()));
+        StackPane pane = new StackPane(new ImageView(getClass().getClassLoader().getResource("assets/textures/menu/Character.png").toExternalForm()));
         // Add Rock Paper Scissor RPG logo image
         // Maybe Add Rock Paper Scissor image
         pane.setPrefSize(appWidth, appHeight);

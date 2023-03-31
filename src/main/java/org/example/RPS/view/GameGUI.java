@@ -7,8 +7,8 @@ import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.app.scene.StartupScene;
 
 public class GameGUI {
-    public static final int width = 28 * 24 + 6 * 24;
-    public static final int height = 28 * 24;
+    public static final int width = 960;
+    public static final int height = 720;
 
     public void initSettings(GameSettings settings){
         settings.setWidth(width);

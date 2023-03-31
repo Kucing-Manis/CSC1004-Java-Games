@@ -25,7 +25,7 @@ public class RPSApp extends GameApplication {
         settings.setTitle("Rock Paper Scissor RPG");
         settings.setVersion("0.1");
 //        settings.setAppIcon();
-//        settings.getCSSList().add("RPSApp.css");
+        settings.getCSSList().add("RPSApp.css");
         settings.setDefaultCursor(new CursorInfo("ui/cursor.png", 0, 0));
 
     }

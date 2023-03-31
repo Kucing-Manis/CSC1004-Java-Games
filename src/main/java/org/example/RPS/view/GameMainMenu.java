@@ -7,6 +7,7 @@ import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.input.view.KeyView;
 import com.almasb.fxgl.texture.Texture;
 import com.almasb.fxgl.ui.DialogService;
+import com.almasb.fxgl.ui.FontType;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -30,13 +31,15 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 import static javafx.scene.input.KeyCode.*;
 
 public class GameMainMenu extends FXGLMenu {
-    private final TranslateTransition tt;
+    private final TranslateTransition tt1;
+    private final TranslateTransition tt2;
+    private final TranslateTransition tt3;
     private final Pane defaultPane;
     private boolean verify(String username, String password) {
         JdbcUtils jdbcUtils = new JdbcUtils();
         jdbcUtils.getConnection();
 
-        String sql = "select count(1) count from `user` where username = ? and password = ?";
+        String sql = "SELECT count(1) count FROM `users` WHERE username = ? and password = ?";
         List<String> params = new ArrayList<>();
         params.add(username);
         params.add(password);
@@ -52,7 +55,7 @@ public class GameMainMenu extends FXGLMenu {
         JdbcUtils jdbcUtils = new JdbcUtils();
         jdbcUtils.getConnection();
 
-        String sql = "select count(1) count from `user` where username = ?";
+        String sql = "SELECT count(1) count FROM `users` WHERE username = ?";
         List<String> params = new ArrayList<>();
         params.add(username);
         try {
@@ -67,7 +70,7 @@ public class GameMainMenu extends FXGLMenu {
         JdbcUtils jdbcUtils = new JdbcUtils();
         jdbcUtils.getConnection();
 
-        String sql = "insert into `user` (username,password) values (?,?)";
+        String sql = "insert into `users` (username,password) values (?,?)";
         List<String> params = new ArrayList<>();
         params.add(username);
         params.add(password);
@@ -80,10 +83,31 @@ public class GameMainMenu extends FXGLMenu {
     }
     public GameMainMenu() {
         super(MenuType.MAIN_MENU);
-        Texture texture = texture("ui/logo.png");
-        texture.setLayoutX(144);
-        texture.setLayoutY(160);
+        Texture background = texture("menu/BackGroundScreen_Day.jpg");
+        background.setLayoutX(-480);
+        background.setLayoutY(-180);
+        background.setScaleX(0.5);
+        background.setScaleY(0.7);
+        background.setVisible(true);
 
+        Texture character = texture("menu/Character.png");
+        character.setLayoutX(90);
+        character.setLayoutY(380);
+        character.setScaleX(1.8);
+        character.setScaleY(1.8);
+        character.setVisible(true);
+
+        Texture bubbleBox = texture("menu/TextBubble.png");
+        bubbleBox.setLayoutX(-75);
+        bubbleBox.setLayoutY(-130);
+        bubbleBox.setOpacity(0.85);
+        bubbleBox.setScaleX(-0.27);
+        bubbleBox.setScaleY(0.22);
+        bubbleBox.setVisible(true);
+
+        var titleText = FXGL.getUIFactoryService().newText("Rock Paper Scissor RPG", Color.BLACK, FontType.MONO, 48);
+        titleText.setLayoutX(170);
+        titleText.setLayoutY(140);
 
         MainMenuButton newGameBtn = new MainMenuButton("START GAME", this::fireNewGame);
         MainMenuButton helpBtn = new MainMenuButton("HELP", this::instructions);
@@ -98,74 +122,85 @@ public class GameMainMenu extends FXGLMenu {
                 exitBtn
         );
         menuBox.setAlignment(Pos.CENTER_LEFT);
-        menuBox.setLayoutX(240);
-        menuBox.setLayoutY(360);
+        menuBox.setLayoutX(505);
+        menuBox.setLayoutY(330);
         menuBox.setVisible(false);
 
 
-        Rectangle bgRect = new Rectangle(getAppWidth(), getAppHeight());
-        Line line = new Line(30, 580, 770, 580);
-        line.setStroke(Color.web("#B9340D"));
-        line.setStrokeWidth(2);
-        Texture textureWall = texture("ui/fxgl.png");
-        textureWall.setLayoutX(310);
-        textureWall.setLayoutY(600);
+        Rectangle bgRect = new Rectangle(330, 220);
+        bgRect.setLayoutX(520);
+        bgRect.setLayoutY(320);
+        bgRect.setOpacity(0.65);
+        bgRect.setVisible(false);
+        Line line = new Line(140, 160, 820, 160); //x,y x,y
+        line.setStroke(Color.web("#000000"));
+        line.setStrokeWidth(5);
+//        Texture textureWall = texture("ui/fxgl.png");
+//        textureWall.setLayoutX(310);
+//        textureWall.setLayoutY(600);
 
 
         VBox loginBox = new VBox(6);//登录VBOX
         loginBox.setAlignment(Pos.CENTER_LEFT);
-        loginBox.setLayoutX(280);
+        loginBox.setLayoutX(550);
         loginBox.setLayoutY(360);
         loginBox.setVisible(false);
 
-        VBox signUpBox = new VBox(5);//注册VBOX
+        VBox signUpBox = new VBox(6);//注册VBOX
         signUpBox.setAlignment(Pos.CENTER_LEFT);
-        signUpBox.setLayoutX(280);
+        signUpBox.setLayoutX(550);
         signUpBox.setLayoutY(360);
         signUpBox.setVisible(false);
 
-        TextField loginBoxUsername = new TextField();//登录VBOX用户名
-        loginBoxUsername.setId("inputText");
-        loginBoxUsername.setPromptText("username");
+        TextField loginUsername = new TextField();//登录VBOX用户名
+        loginUsername.setId("inputText");
+        loginUsername.setPromptText("Username");
 
         TextField signUpUsername = new TextField();//注册VBOX用户名
         signUpUsername.setId("inputText");
-        signUpUsername.setPromptText("username");
+        signUpUsername.setPromptText("Username");
 
-        TextField loginBoxPassword = new TextField();//登录VBOX密码
-        loginBoxPassword.setId("inputText");
-        loginBoxPassword.setPromptText("password");
+        TextField loginPassword = new TextField();//登录VBOX密码
+        loginPassword.setId("inputText");
+        loginPassword.setPromptText("Password");
 
-        TextField signUpPassword = new TextField();//注册VBOX密码
+        TextField signUpPassword = new TextField();
         signUpPassword.setId("inputText");
-        signUpPassword.setPromptText("password");
+        signUpPassword.setPromptText("Password");
 
-        Label loginBoxLabel = new Label();//登录VBOX错误提示label
-        loginBoxLabel.setId("label");
+        TextField signUpCheckPassword = new TextField();
+        signUpCheckPassword.setId("inputText");
+        signUpCheckPassword.setPromptText("Confirm Password");
 
-        Label signUpBoxLabel = new Label();//注册VBOX错误提示label
-        signUpBoxLabel.setId("label");
+        Label loginLabel = new Label();
+        loginLabel.setId("label");
+
+        Label registerLabel = new Label();
+        registerLabel.setId("label");
 
 
-        Button signUpBoxBtn = new Button();//注册VBOX的 注册按钮
-        signUpBoxBtn.setId("loginBtn");
-        signUpBoxBtn.setText("Sign up");
-        signUpBoxBtn.setOnAction(event -> {
-            if (exists(signUpUsername.getText())) {
-                signUpBoxLabel.setText("username already exists.");
+        Button registerBtn = new Button();
+        registerBtn.setId("loginBtn");
+        registerBtn.setText("Register");
+        registerBtn.setOnAction(event -> {
+            if(signUpPassword.getText().equals(signUpCheckPassword.getText())){
+                registerLabel.setText("Password and Confirm Password are not same");
             } else {
-                if (signUp(signUpUsername.getText(), signUpPassword.getText())) {
-                    signUpBox.setVisible(false);
-                    menuBox.setVisible(true);
+                if (exists(signUpUsername.getText())) {
+                    registerLabel.setText("Username already exists");
+                } else {
+                    if (signUp(signUpUsername.getText(), signUpPassword.getText())) {
+                        signUpBox.setVisible(false);
+                        loginBox.setVisible(true);
+                    }
                 }
-
             }
         });
 
-        Button signUpBtn = new Button();//登录VBOX的 注册按钮
-        signUpBtn.setId("loginBtn");
-        signUpBtn.setText("Sign up");
-        signUpBtn.setOnAction(event -> {
+        Button toSignUpBtn = new Button();
+        toSignUpBtn.setId("loginBtn");
+        toSignUpBtn.setText("Register");
+        toSignUpBtn.setOnAction(event -> {
             loginBox.setVisible(false);
             signUpBox.setVisible(true);
         });
@@ -173,41 +208,81 @@ public class GameMainMenu extends FXGLMenu {
 
         Button loginBtn = new Button();//登录VBOX的 登录按钮
         loginBtn.setId("loginBtn");
-        loginBtn.setText("Sign in");
+        loginBtn.setText("Login");
         loginBtn.setOnAction(event -> {
-            if (verify(loginBoxUsername.getText(), loginBoxPassword.getText())) {
+            if (verify(loginUsername.getText(), loginPassword.getText())) {
                 loginBox.setVisible(false);
                 menuBox.setVisible(true);
             } else {
-                loginBoxLabel.setText("Incorrect username or password.");
+                loginLabel.setText("Incorrect username or password");
             }
         });
 
-        //登录VBOX的功能
+        //Add to Screen
         loginBox.getChildren().addAll(
-                loginBoxUsername,
-                loginBoxPassword,
-                loginBoxLabel,
+                loginUsername,
+                loginPassword,
+                loginLabel,
                 loginBtn,
-                signUpBtn);
-        //注册VBOX的功能
+                toSignUpBtn);
         signUpBox.getChildren().addAll(
                 signUpUsername,
                 signUpPassword,
-                signUpBoxLabel,
-                signUpBoxBtn);
+                signUpCheckPassword,
+                registerLabel,
+                registerBtn);
 
-        Texture tankTexture = FXGL.texture("ui/tankLoading.png");
+//        double random = Math.random();
+//        Texture imageRandom = FXGL.texture("ui/Scissor.png");
+//        if(random <= 0.333333333){
+//             imageRandom = FXGL.texture("ui/Rock.png");
+//        } else if(random <= 0.666666666){
+//             imageRandom = FXGL.texture("ui/Paper.jpeg");
+//        } else {
+//             imageRandom = FXGL.texture("ui/Scissor.png");
+//        }
+        Texture rock = FXGL.texture("ui/Rock.png");
+        Texture paper = FXGL.texture("ui/Paper.jpeg");
+        Texture scissor = FXGL.texture("ui/Scissor.png");
+        rock.setLayoutX(-400);
+        paper.setLayoutX(-400);
+        scissor.setLayoutX(-400);
+        rock.setOpacity(0.9);
+        paper.setOpacity(0.9);
+        scissor.setOpacity(0.9);
 
-        tt = new TranslateTransition(Duration.seconds(1), tankTexture);
-        tt.setInterpolator(Interpolators.ELASTIC.EASE_OUT());
-        tt.setFromX(172);
-        tt.setFromY(252);
-        tt.setToX(374);
-        tt.setToY(252);
-        tt.setOnFinished(e -> loginBox.setVisible(true));
+        rock.setScaleX(0.27);
+        rock.setScaleY(0.27);
+        paper.setScaleX(0.27);
+        paper.setScaleY(0.27);
+        scissor.setScaleX(0.27);
+        scissor.setScaleY(0.27);
+        tt1 = new TranslateTransition(Duration.seconds(1), scissor);
+        tt1.setInterpolator(Interpolators.ELASTIC.EASE_OUT());
+        tt1.setFromX(-400);
+        tt1.setFromY(447);
+        tt1.setToX(940);
+        tt1.setToY(447);
+        tt2 = new TranslateTransition(Duration.seconds(1), paper);
+        tt1.setOnFinished(e -> tt2.play());
+        tt2.setInterpolator(Interpolators.ELASTIC.EASE_OUT());
+        tt2.setFromX(-400);
+        tt2.setFromY(438);
+        tt2.setToX(625);
+        tt2.setToY(438);
+        tt3 = new TranslateTransition(Duration.seconds(1), rock);
+        tt2.setOnFinished(e -> tt3.play());
+        tt3.setInterpolator(Interpolators.ELASTIC.EASE_OUT());
+        tt3.setFromX(-400);
+        tt3.setFromY(450);
+        tt3.setToX(340);
+        tt3.setToY(450);
+        tt3.setOnFinished(e -> {
+            loginBox.setVisible(true);
+            bgRect.setVisible(true);
+        });
 
-        defaultPane = new Pane(bgRect, texture, tankTexture, loginBox, menuBox, signUpBox, line, textureWall);
+        defaultPane = new Pane(background, bgRect, bubbleBox, character, titleText, rock, paper, scissor, loginBox, menuBox, signUpBox, line);
         getContentRoot().getChildren().setAll(defaultPane);
     }
 
@@ -215,8 +290,8 @@ public class GameMainMenu extends FXGLMenu {
     @Override
     public void onCreate() {
         getContentRoot().getChildren().setAll(defaultPane);
-        FXGL.play("mainMenuLoad.wav");
-        tt.play();
+//        FXGL.play("mainMenuLoad.wav");
+        tt1.play();
     }
 
     /**
