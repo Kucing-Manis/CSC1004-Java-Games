@@ -4,12 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09630b29-dc79-4ac5-aec5-5f63d1aac8d1" name="Changes" comment="Main Menu 90% Done">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/data/characterData.java" afterDir="false" />
+    <list default="true" id="09630b29-dc79-4ac5-aec5-5f63d1aac8d1" name="Changes" comment="Finish making the RPS and the transition">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/component/CharacterComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/Forest_Morning.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/Forest_Night.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/GameEntitiyFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/GameEntitiyFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/RPSApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/RPSApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/data/characterData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/view/GameMainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/view/GameMainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/textures/Fighter.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/characters/Fighter.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/textures/Guard.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/characters/Guard.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/textures/Healer.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/characters/Healer.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/textures/Hero.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/characters/Hero.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/textures/Mage.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/characters/Mage.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/textures/Wizard.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/characters/Wizard.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,11 +81,11 @@
       <recent name="C:\Project\Java\CSC1004-Java-Games\lib" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\resources\assets\textures\menu" />
       <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\resources\assets\textures" />
+      <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\resources\assets\textures\character" />
+      <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\resources\assets\textures\menu" />
       <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\resources\assets\ui" />
       <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\resources\assets" />
-      <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\java\org\example\userform" />
     </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="org.example.game.ui" />
@@ -159,7 +169,7 @@
       <workItem from="1680188094597" duration="1302000" />
       <workItem from="1680274000111" duration="12470000" />
       <workItem from="1680339725724" duration="4874000" />
-      <workItem from="1680593906518" duration="13081000" />
+      <workItem from="1680593906518" duration="19594000" />
     </task>
     <task id="LOCAL-00001" summary="Login GUI 1">
       <created>1677209604842</created>
@@ -245,7 +255,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680286367826</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Finish making the RPS and the transition">
+      <created>1680619765019</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1680619765019</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -274,7 +291,8 @@
     <MESSAGE value="Add userdbs.sql" />
     <MESSAGE value="Changing fxml login and register to fxgl" />
     <MESSAGE value="Main Menu 90% Done" />
-    <option name="LAST_COMMIT_MESSAGE" value="Main Menu 90% Done" />
+    <MESSAGE value="Finish making the RPS and the transition" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finish making the RPS and the transition" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

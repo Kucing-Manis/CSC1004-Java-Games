@@ -15,6 +15,7 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
@@ -75,19 +76,26 @@ public class RPSApp extends GameApplication {
 
     @Override
     protected void initGame() {
-//        SpriteData spriteHero = new SpriteData("sprite/Hero.png", 6, 6, 64, 64, 0, 9, 1);
+        // Set Background
+
+
+//        SpriteData spriteHero = new SpriteData("characters/Hero.png", 6, 6, 64, 64, 0, 9, 1);
+//        SpriteData spriteWizard = new SpriteData("characters/Wizard.png", 6, 6, 64, 64, 0, 9, 1);
+//        SpriteData spriteHealer = new SpriteData("characters/Healer.png", 6, 6, 64, 64, 0, 9, 1);
+//        SpriteData spriteGuard = new SpriteData("characters/Guard.png", 6, 6, 64, 64, 0, 9, 1);
+//        SpriteData spriteFighter = new SpriteData("characters/Fighter.png", 6, 6, 64, 64, 0, 9, 1);
 
         character1 = FXGL.entityBuilder()
                 .at(185, 360)
-                .with(new AnimationComponent(new SpriteData("Hero.png", 6, 64, 64, 0, 9, 1)))
+                .with(new AnimationComponent(new SpriteData("characters/Hero.png", 6, 64, 64, 0, 9, 1)))
                 .buildAndAttach();
         character2 = FXGL.entityBuilder()
                 .at(150, 410)
-                .with(new AnimationComponent(new SpriteData("Wizard.png", 6, 64, 64, 0, 9, 1)))
+                .with(new AnimationComponent(new SpriteData("characters/Wizard.png", 6, 64, 64, 0, 9, 1)))
                 .buildAndAttach();
         character3 = FXGL.entityBuilder()
                 .at(150, 310)
-                .with(new AnimationComponent(new SpriteData("Healer.png", 6, 64, 64, 0, 9, 1)))
+                .with(new AnimationComponent(new SpriteData("characters/Healer.png", 6, 64, 64, 0, 9, 1)))
                 .buildAndAttach();
         box = FXGL.entityBuilder().at(200, 100).view(new Rectangle(50, 50, Color.BLACK)).buildAndAttach();
         box2 = FXGL.entityBuilder().at(600, 100).view(new Rectangle(50, 50, Color.BLACK)).buildAndAttach();

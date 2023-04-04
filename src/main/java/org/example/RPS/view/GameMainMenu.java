@@ -183,7 +183,7 @@ public class GameMainMenu extends FXGLMenu {
         registerBtn.setId("loginBtn");
         registerBtn.setText("Register");
         registerBtn.setOnAction(event -> {
-            if(signUpPassword.getText().equals(signUpCheckPassword.getText())){
+            if(!signUpPassword.getText().equals(signUpCheckPassword.getText())){
                 registerLabel.setText("Password and Confirm Password are not same");
             } else {
                 if (exists(signUpUsername.getText())) {
