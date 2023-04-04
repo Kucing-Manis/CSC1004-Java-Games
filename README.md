@@ -27,3 +27,13 @@ Step:
 5. Enemy and Character Data 
 6. Gameplay 1 battle (Check finish if hp player or enemy = 0)
 7. Infinite Loop Level
+
+Need to be Add or change:
+1. Database and Register need Adress, Gender, Age, Highscore
+2. Story
+3. Tutorial
+4. Video Presentation
+5. Documentation
+6. Voice or Video
+7. Multiplayers or Webgame
+8. 

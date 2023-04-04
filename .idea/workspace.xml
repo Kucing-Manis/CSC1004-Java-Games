@@ -4,34 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09630b29-dc79-4ac5-aec5-5f63d1aac8d1" name="Changes" comment="Changing fxml login and register to fxgl">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/menu/BackGroundScreen_Day.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/menu/BackgroundScreen_Night.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/menu/TextBubble.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/ui/css/RPSApp.css" afterDir="false" />
+    <list default="true" id="09630b29-dc79-4ac5-aec5-5f63d1aac8d1" name="Changes" comment="Main Menu 90% Done">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/data/characterData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/GameEntitiyFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/GameEntitiyFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/RPSApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/RPSApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/db/JdbcUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/db/JdbcUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/view/GameGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/view/GameGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/view/GameMainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/view/GameMainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/view/GameStartupScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/view/GameStartupScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/userform/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/userform/RegisterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/FinishLogin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FinishLogin.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/LoginUser.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/LoginUser.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/RegisterUser.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/RegisterUser.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/menu/Back.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/menu/Back.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/menu/Background.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/menu/Background.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/menu/BackgroundCharacter.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/menu/BackgroundCharacter.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/menu/Character.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/menu/Character.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/menu/Email.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/menu/Email.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/menu/Lock.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/menu/Lock.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/menu/Password.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/menu/Password.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/menu/Person.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/menu/Person.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/menu/TextBubble.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/menu/TextBubble2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/ui/Paper.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/ui/Paper.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/ui/Rock.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/ui/Rock.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/ui/Scissor.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/ui/Scissor.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/ui/cursor.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/ui/cursor.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,24 +44,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Project/Java/CSC1004-Java-Games/src/main/resources/assets",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.4091954",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Project/Java/CSC1004-Java-Games/src/main/resources/assets&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.4091954&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\resources\assets" />
@@ -179,7 +157,9 @@
       <workItem from="1679989890020" duration="7540000" />
       <workItem from="1680064148495" duration="1155000" />
       <workItem from="1680188094597" duration="1302000" />
-      <workItem from="1680274000111" duration="12216000" />
+      <workItem from="1680274000111" duration="12470000" />
+      <workItem from="1680339725724" duration="4874000" />
+      <workItem from="1680593906518" duration="13081000" />
     </task>
     <task id="LOCAL-00001" summary="Login GUI 1">
       <created>1677209604842</created>
@@ -258,7 +238,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680023288728</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Main Menu 90% Done">
+      <created>1680286367826</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1680286367826</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -286,7 +273,8 @@
     <MESSAGE value="Trying to change scene from FXGL to fxml and from fxml to FXGL. Still failed. Maybe will remove the fxml file and just create it from FXGL" />
     <MESSAGE value="Add userdbs.sql" />
     <MESSAGE value="Changing fxml login and register to fxgl" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changing fxml login and register to fxgl" />
+    <MESSAGE value="Main Menu 90% Done" />
+    <option name="LAST_COMMIT_MESSAGE" value="Main Menu 90% Done" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

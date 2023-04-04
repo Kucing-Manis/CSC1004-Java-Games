@@ -10,9 +10,9 @@ import javafx.scene.shape.Rectangle;
 
 public class GameEntitiyFactory implements EntityFactory {
 
-    @Spawns("enemy")
-    public Entity newEnemy(SpawnData enemyData) {
-        return FXGL.entityBuilder(enemyData)
+    @Spawns("player")
+    public Entity newPlayer(SpawnData data) {
+        return FXGL.entityBuilder(data)
                 .view(new Rectangle(40, 40, Color.RED))
                 .buildAndAttach();
     }
