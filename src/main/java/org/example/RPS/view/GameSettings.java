@@ -1,16 +1,15 @@
 package org.example.RPS.view;
 
-import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.app.scene.FXGLMenu;
 import com.almasb.fxgl.app.scene.LoadingScene;
 import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.app.scene.StartupScene;
 
-public class GameGUI {
+public class GameSettings {
     public static final int width = 960;
     public static final int height = 720;
 
-    public void initSettings(GameSettings settings){
+    public void initSettings(com.almasb.fxgl.app.GameSettings settings){
         settings.setWidth(width);
         settings.setHeight(height);
         settings.setMainMenuEnabled(true);

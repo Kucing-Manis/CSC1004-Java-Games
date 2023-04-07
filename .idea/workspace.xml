@@ -4,22 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09630b29-dc79-4ac5-aec5-5f63d1aac8d1" name="Changes" comment="Finish making the RPS and the transition">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/component/CharacterComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/Forest_Morning.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/Forest_Night.png" afterDir="false" />
+    <list default="true" id="09630b29-dc79-4ac5-aec5-5f63d1aac8d1" name="Changes" comment="Starting creating the character component and enemy component">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/GameEntitiyFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/GameEntitiyFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/GameEntitiyFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/GameEntityFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/RPSApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/RPSApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/data/characterData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/view/GameMainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/view/GameMainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/textures/Fighter.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/characters/Fighter.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/textures/Guard.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/characters/Guard.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/textures/Healer.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/characters/Healer.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/textures/Hero.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/characters/Hero.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/textures/Mage.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/characters/Mage.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/textures/Wizard.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/characters/Wizard.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/component/CharacterComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/component/CharacterComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/view/GameGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/view/GameSettings.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,7 +159,8 @@
       <workItem from="1680188094597" duration="1302000" />
       <workItem from="1680274000111" duration="12470000" />
       <workItem from="1680339725724" duration="4874000" />
-      <workItem from="1680593906518" duration="19594000" />
+      <workItem from="1680593906518" duration="20228000" />
+      <workItem from="1680854661406" duration="7304000" />
     </task>
     <task id="LOCAL-00001" summary="Login GUI 1">
       <created>1677209604842</created>
@@ -262,7 +253,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680619765019</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Starting creating the character component and enemy component">
+      <created>1680629051122</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1680629051122</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -292,7 +290,8 @@
     <MESSAGE value="Changing fxml login and register to fxgl" />
     <MESSAGE value="Main Menu 90% Done" />
     <MESSAGE value="Finish making the RPS and the transition" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finish making the RPS and the transition" />
+    <MESSAGE value="Starting creating the character component and enemy component" />
+    <option name="LAST_COMMIT_MESSAGE" value="Starting creating the character component and enemy component" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

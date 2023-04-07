@@ -3,20 +3,13 @@ package org.example.RPS;
 import com.almasb.fxgl.animation.Interpolators;
 import com.almasb.fxgl.app.CursorInfo;
 import com.almasb.fxgl.app.GameApplication;
-import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
-import com.almasb.fxgl.entity.action.ActionComponent;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.texture.Texture;
-import com.almasb.fxgl.ui.UIController;
 import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -27,7 +20,10 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 import org.example.RPS.animation.AnimationComponent;
 import org.example.RPS.animation.SpriteData;
-import org.example.RPS.view.GameGUI;
+import org.example.RPS.component.CharacterComponent;
+import org.example.RPS.view.GameSettings;
+
+import java.util.ArrayList;
 
 import static com.almasb.fxgl.app.GameApplication.launch;
 import static com.almasb.fxgl.dsl.FXGL.*;
@@ -35,12 +31,20 @@ import static com.almasb.fxgl.dsl.FXGL.addUINode;
 
 public class RPSApp extends GameApplication {
     private GameApplication app;
-    GameGUI gui = new GameGUI();
+    GameSettings setting = new GameSettings();
 //    DinosaurController controller = new DinosaurController();
 
+    private Entity p1, p2, p3;
+//    private CharacterComponent heroComp, wizardComp, healerComp, guardComp, fighterComp;
+    private ArrayList<CharacterComponent> characterComps = new ArrayList<>();
+    private CharacterComponent actingCharacter;
+    private Entity rock, paper, scissor;
+    private Entity box, box2;
+
     @Override
-    protected void initSettings(GameSettings settings) {
-        gui.initSettings(settings);
+    protected void initSettings(com.almasb.fxgl.app.GameSettings settings) {
+        setting.initSettings(settings);
+        // GameSettings hapus g berguna
         settings.setTitle("Rock Paper Scissor RPG");
         settings.setVersion("0.1");
 //        settings.setAppIcon();
@@ -49,27 +53,23 @@ public class RPSApp extends GameApplication {
 
     }
 
-    private Entity character1, character2, character3, character4, character5;
-    private Entity rock, paper, scissor;
-    private Entity box, box2;
-
     @Override
     protected void initInput() {
 //         Movement LEFT
         FXGL.getInput().addAction(new UserAction("Left") {
             @Override
             protected void onAction() {
-                character1.getComponent(AnimationComponent.class).moveLeft();
-                character2.getComponent(AnimationComponent.class).moveLeft();
-                character3.getComponent(AnimationComponent.class).moveLeft();
+                p1.getComponent(AnimationComponent.class).moveLeft();
+                p2.getComponent(AnimationComponent.class).moveLeft();
+                p3.getComponent(AnimationComponent.class).moveLeft();
             }
         }, KeyCode.A);
         FXGL.getInput().addAction(new UserAction("Right") {
             @Override
             protected void onAction() {
-                character1.getComponent(AnimationComponent.class).moveRight();
-                character2.getComponent(AnimationComponent.class).moveRight();
-                character3.getComponent(AnimationComponent.class).moveRight();
+                p1.getComponent(AnimationComponent.class).moveRight();
+                p2.getComponent(AnimationComponent.class).moveRight();
+                p3.getComponent(AnimationComponent.class).moveRight();
             }
         }, KeyCode.D);
     }
@@ -77,23 +77,42 @@ public class RPSApp extends GameApplication {
     @Override
     protected void initGame() {
         // Set Background
+        getGameWorld().addEntityFactory(new GameEntityFactory());
+        spawn("background");
 
+        // Sprite Data
+        SpriteData spriteHero = new SpriteData("characters/Hero.png", 6, 64, 64, 0, 9, 1);
+        SpriteData spriteWizard = new SpriteData("characters/Wizard.png", 6, 64, 64, 0, 9, 1);
+        SpriteData spriteHealer = new SpriteData("characters/Healer.png", 6,64, 64, 0, 9, 1);
+        SpriteData spriteGuard = new SpriteData("characters/Guard.png", 6, 64, 64, 0, 9, 1);
+        SpriteData spriteFighter = new SpriteData("characters/Fighter.png", 6, 64, 64, 0, 9, 1);
 
-//        SpriteData spriteHero = new SpriteData("characters/Hero.png", 6, 6, 64, 64, 0, 9, 1);
-//        SpriteData spriteWizard = new SpriteData("characters/Wizard.png", 6, 6, 64, 64, 0, 9, 1);
-//        SpriteData spriteHealer = new SpriteData("characters/Healer.png", 6, 6, 64, 64, 0, 9, 1);
-//        SpriteData spriteGuard = new SpriteData("characters/Guard.png", 6, 6, 64, 64, 0, 9, 1);
-//        SpriteData spriteFighter = new SpriteData("characters/Fighter.png", 6, 6, 64, 64, 0, 9, 1);
+        //Character
+        characterComps.add(new CharacterComponent("Hero", "Justice", 1,10,1,2,1, spriteHero));
+        characterComps.add(new CharacterComponent("Wizard", "Fireball", 1,5,1,3,1, spriteWizard));
+        characterComps.add(new CharacterComponent("Healer", "Heal", 1,6,1,1,1, spriteHealer));
+        characterComps.add(new CharacterComponent("Guard", "Guard Team", 1,15,1,1,1, spriteGuard));
+        characterComps.add(new CharacterComponent("Fighter", "Pierce", 1,7,1,3,1, spriteFighter));
 
-        character1 = FXGL.entityBuilder()
+//        heroComp = new CharacterComponent("Hero", "Justice", 1,1,1,1,1 );
+//        heroComp.setDamage((int)heroComp.getLevel()/5 + heroComp.getDamage());
+//        heroComp.setHp((int)heroComp.getLevel()/3 + heroComp.getHp());
+//        wizardComp = new CharacterComponent("Hero", "Justice", 1,1,1,1,1 );
+//        heroComp.setDamage((int)heroComp.getLevel()/5 + heroComp.getDamage());
+//        heroComp.setHp((int)heroComp.getLevel()/3 + heroComp.getHp());
+//        healerComp = new CharacterComponent("Hero", "Justice", 1,1,1,1,1 );
+//        heroComp.setDamage((int)heroComp.getLevel()/5 + heroComp.getDamage());
+//        heroComp.setHp((int)heroComp.getLevel()/3 + heroComp.getHp());
+
+        p1 = FXGL.entityBuilder()
                 .at(185, 360)
                 .with(new AnimationComponent(new SpriteData("characters/Hero.png", 6, 64, 64, 0, 9, 1)))
                 .buildAndAttach();
-        character2 = FXGL.entityBuilder()
+        p2 = FXGL.entityBuilder()
                 .at(150, 410)
                 .with(new AnimationComponent(new SpriteData("characters/Wizard.png", 6, 64, 64, 0, 9, 1)))
                 .buildAndAttach();
-        character3 = FXGL.entityBuilder()
+        p3 = FXGL.entityBuilder()
                 .at(150, 310)
                 .with(new AnimationComponent(new SpriteData("characters/Healer.png", 6, 64, 64, 0, 9, 1)))
                 .buildAndAttach();
@@ -127,6 +146,15 @@ public class RPSApp extends GameApplication {
         box2.getViewComponent().addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
             initRPS();
         });
+        p1.getViewComponent().addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
+
+        });
+        p2.getViewComponent().addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
+
+        });
+        p3.getViewComponent().addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
+
+        });
         initRPS();
     }
 
@@ -136,6 +164,15 @@ public class RPSApp extends GameApplication {
         scissor.setVisible(true);
         box.setVisible(false);
         box2.setVisible(false);
+    }
+
+    protected void initRPS(CharacterComponent character) {
+        rock.setVisible(true);
+        paper.setVisible(true);
+        scissor.setVisible(true);
+        box.setVisible(false);
+        box2.setVisible(false);
+        actingCharacter = character;
     }
 
     protected void calculateNormalEnemyRPS(String playerPick) {
@@ -194,15 +231,15 @@ public class RPSApp extends GameApplication {
         Texture rockTT = FXGL.texture("ui/Rock.png");
         Texture paperTT = FXGL.texture("ui/Paper.jpeg");
         Texture scissorTT = FXGL.texture("ui/Scissor.png");
-        rockTT.setScaleX(0.4);
-        rockTT.setScaleY(0.4);
-        paperTT.setScaleX(0.4);
-        paperTT.setScaleY(0.4);
-        scissorTT.setScaleX(0.4);
-        scissorTT.setScaleY(0.4);
-        rockTT.setOpacity(0.9);
-        paperTT.setOpacity(0.9);
-        scissorTT.setOpacity(0.9);
+        rockTT.setScaleX(0.35);
+        rockTT.setScaleY(0.35);
+        paperTT.setScaleX(0.35);
+        paperTT.setScaleY(0.35);
+        scissorTT.setScaleX(0.35);
+        scissorTT.setScaleY(0.35);
+        rockTT.setOpacity(0.8);
+        paperTT.setOpacity(0.8);
+        scissorTT.setOpacity(0.8);
         rockTT.setVisible(false);
         paperTT.setVisible(false);
         scissorTT.setVisible(false);
@@ -269,22 +306,22 @@ public class RPSApp extends GameApplication {
         result.setFill(Color.BLACK);
         result.setFont(new Font(50));
         result.setLayoutX(getAppWidth() / 2.0 - 80);
-        result.setLayoutY(getAppHeight() / 2.0 - 5);
+        result.setLayoutY(getAppHeight() / 2.0 - 100);
         result.setVisible(false);
 
         // Get Image
         Texture rockTT = FXGL.texture("ui/Rock.png");
         Texture paperTT = FXGL.texture("ui/Paper.jpeg");
         Texture scissorTT = FXGL.texture("ui/Scissor.png");
-        rockTT.setScaleX(-0.4);
-        rockTT.setScaleY(0.4);
-        paperTT.setScaleX(-0.4);
-        paperTT.setScaleY(0.4);
-        scissorTT.setScaleX(-0.4);
-        scissorTT.setScaleY(0.4);
-        rockTT.setOpacity(0.9);
-        paperTT.setOpacity(0.9);
-        scissorTT.setOpacity(0.9);
+        rockTT.setScaleX(-0.35);
+        rockTT.setScaleY(0.35);
+        paperTT.setScaleX(-0.35);
+        paperTT.setScaleY(0.35);
+        scissorTT.setScaleX(-0.35);
+        scissorTT.setScaleY(0.35);
+        rockTT.setOpacity(0.8);
+        paperTT.setOpacity(0.8);
+        scissorTT.setOpacity(0.8);
         rockTT.setVisible(false);
         paperTT.setVisible(false);
         scissorTT.setVisible(false);
@@ -307,7 +344,7 @@ public class RPSApp extends GameApplication {
             paperTT.setVisible(true);
             ttPaper.setInterpolator(Interpolators.ELASTIC.EASE_OUT());
             ttPaper.setFromX(1200);
-            ttPaper.setFromY(getAppHeight() / 2.0);
+            ttPaper.setFromY(getAppHeight() / 2.0 - 13);
             ttPaper.setToX(getAppWidth() / 2.0 - 65);
             ttPaper.setToY(getAppHeight() / 2.0 - 13);
             ttPaper.setOnFinished(e -> {
@@ -342,22 +379,13 @@ public class RPSApp extends GameApplication {
         tl.setOnFinished(e -> {
 //            System.out.println("Finish Enemy Transition");
             removeUINode(pane);
-            battleCharacter();
+            battleCharacter(input);
         });
         tl.play();
     }
 
-    protected void battleCharacter() {
+    protected void battleCharacter(String result) {
         System.out.println("Battle Time");
-//        character1.getViewComponent().addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
-//            initRPS();
-//            System.out.println("Work");
-            // Damage, HP, Mana, Level, Name
-            // Visibile skill, stats kiri, skill bawah
-            // Player Data, enemy Data
-            // Player Component, enemy component(Untuk dapatin beda beda enemy dan character)
-//        });
-
         box.setVisible(true);
         box2.setVisible(true);
     }
