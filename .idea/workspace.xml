@@ -4,12 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09630b29-dc79-4ac5-aec5-5f63d1aac8d1" name="Changes" comment="Starting creating the character component and enemy component">
+    <list default="true" id="09630b29-dc79-4ac5-aec5-5f63d1aac8d1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/component/boxComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/component/boxViewComponent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/GameEntitiyFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/GameEntityFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/GameEntityFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/GameEntityFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/RPSApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/RPSApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/animation/AnimationComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/animation/AnimationComponent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/component/CharacterComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/component/CharacterComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/view/GameGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/view/GameSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/userform/LoggedInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/userform/LoggedInController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,24 +47,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Project/Java/CSC1004-Java-Games/src/main/resources/assets&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.4091954&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Project/Java/MovieManagement",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.4091954",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Project\Java\CSC1004-Java-Games\src\main\resources\assets" />
@@ -160,7 +163,13 @@
       <workItem from="1680274000111" duration="12470000" />
       <workItem from="1680339725724" duration="4874000" />
       <workItem from="1680593906518" duration="20228000" />
-      <workItem from="1680854661406" duration="7304000" />
+      <workItem from="1680854661406" duration="7369000" />
+      <workItem from="1681198164157" duration="2737000" />
+      <workItem from="1681356295542" duration="3152000" />
+      <workItem from="1681802744857" duration="953000" />
+      <workItem from="1682412287841" duration="14843000" />
+      <workItem from="1683007930467" duration="18421000" />
+      <workItem from="1683278557993" duration="1811000" />
     </task>
     <task id="LOCAL-00001" summary="Login GUI 1">
       <created>1677209604842</created>
@@ -260,7 +269,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680629051122</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Finish creating character component">
+      <created>1680879584163</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1680879584163</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -291,7 +307,8 @@
     <MESSAGE value="Main Menu 90% Done" />
     <MESSAGE value="Finish making the RPS and the transition" />
     <MESSAGE value="Starting creating the character component and enemy component" />
-    <option name="LAST_COMMIT_MESSAGE" value="Starting creating the character component and enemy component" />
+    <MESSAGE value="Finish creating character component" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finish creating character component" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

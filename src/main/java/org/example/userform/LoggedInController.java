@@ -14,15 +14,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LoggedInController extends FXGLMenu implements Initializable {
+public class LoggedInController implements Initializable {
     @FXML
     private Button button_start, button_logout;
     @FXML
     private Label label_text_cloud, label_title;
-
-    public LoggedInController() {
-        super(MenuType.MAIN_MENU);
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -31,10 +27,11 @@ public class LoggedInController extends FXGLMenu implements Initializable {
                     @Override
                     public void handle(ActionEvent event) {
                     Stage stage = (Stage) button_start.getScene().getWindow();
-                    stage.close();
-                        fireNewGame();
-                    stage.show();
-                        fireExitToMainMenu();
+//                    stage.close();
+//                        fireNewGame();
+//                    stage.show();
+//                        fireExitToMainMenu();
+                        label_text_cloud.setText("Hi " + " Success");
                     }
                 });
         button_logout.setOnAction(new EventHandler<ActionEvent>() {
