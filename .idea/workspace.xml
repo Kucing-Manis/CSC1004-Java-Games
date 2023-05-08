@@ -4,15 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09630b29-dc79-4ac5-aec5-5f63d1aac8d1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/component/boxComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/component/boxViewComponent.java" afterDir="false" />
+    <list default="true" id="09630b29-dc79-4ac5-aec5-5f63d1aac8d1" name="Changes" comment="BoxPanel and enemys">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/GameEntityFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/GameEntityFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/GameType.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/RPSApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/RPSApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/animation/AnimationComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/animation/AnimationComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/component/CharacterComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/component/CharacterComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/userform/LoggedInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/userform/LoggedInController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/component/boxComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/component/boxViewComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/userform/DBUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/userform/HelloApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/userform/LoggedInController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/userform/LoginController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/userform/RegisterController.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,7 +172,7 @@
       <workItem from="1681802744857" duration="953000" />
       <workItem from="1682412287841" duration="14843000" />
       <workItem from="1683007930467" duration="18421000" />
-      <workItem from="1683278557993" duration="1811000" />
+      <workItem from="1683278557993" duration="27779000" />
     </task>
     <task id="LOCAL-00001" summary="Login GUI 1">
       <created>1677209604842</created>
@@ -276,7 +279,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680879584163</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="BoxPanel and enemys">
+      <created>1683517703948</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1683517703948</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -308,7 +318,20 @@
     <MESSAGE value="Finish making the RPS and the transition" />
     <MESSAGE value="Starting creating the character component and enemy component" />
     <MESSAGE value="Finish creating character component" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finish creating character component" />
+    <MESSAGE value="BoxPanel and enemy" />
+    <MESSAGE value="BoxPanel and enemys" />
+    <option name="LAST_COMMIT_MESSAGE" value="BoxPanel and enemys" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/RPS/RPSApp.java</url>
+          <line>440</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
