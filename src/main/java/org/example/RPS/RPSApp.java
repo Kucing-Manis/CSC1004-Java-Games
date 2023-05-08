@@ -163,24 +163,25 @@ public class RPSApp extends GameApplication {
     protected void nextStage(){
         labelStage.setText("Stage " + stage + " Round " + round);
         for (int i = 0; i < enemyComps.size(); i++) {
-            addStats(enemyComps.get(i));
+            addStats(enemyComps.get(i), true);
         }
 
         if(!isP1Dead){
-            addStats(characterComps.get(0));
+            addStats(characterComps.get(0), false);
+            addUINode(pane1);
         }
         if(!isP2Dead){
-            addStats(characterComps.get(1));
+            addStats(characterComps.get(1), false);
+            addUINode(pane2);
         }
         if(!isP3Dead){
-            addStats(characterComps.get(2));
+            addStats(characterComps.get(2), false);
+            addUINode(pane3);
         }
         spawnBoxPanels();
         spawnEnemy();
 
-        addUINode(pane1);
-        addUINode(pane2);
-        addUINode(pane3);
+
         addUINode(paneEnemy);
     }
 
@@ -192,19 +193,19 @@ public class RPSApp extends GameApplication {
                 new KeyFrame(Duration.seconds(0.5)
                 ));
 
-        highlight = FXGL.entityBuilder().view(new Rectangle(194, 149, Color.WHITE)).buildAndAttach();
+        highlight = FXGL.entityBuilder().view(new Rectangle(194, 154, Color.WHITE)).buildAndAttach();
         highlight.setVisible(false);
         highlight.setOpacity(0.8);
         highlight.setPosition(3, 100 + 180*selectedBox - 12);
 
-        bgLabelStage = FXGL.entityBuilder().at(getAppWidth() / 2.0 - 195, getAppHeight() - 685).view(new Rectangle(390, 70, Color.WHITE)).buildAndAttach();
+        bgLabelStage = FXGL.entityBuilder().at(getAppWidth() / 2.0 - 210, getAppHeight() - 685).view(new Rectangle(420, 70, Color.WHITE)).buildAndAttach();
         bgLabelStage.setOpacity(0.65);
 
         labelStage = new Text();
         labelStage.setFill(Color.BLACK);
         labelStage.setFont(new Font(50));
-        labelStage.setLayoutX(getAppWidth() / 2.0 - 180);
-        labelStage.setLayoutY(getAppHeight() - 635);
+        labelStage.setLayoutX(getAppWidth() / 2.0 - 190);
+        labelStage.setLayoutY(getAppHeight() - 633);
 
         Pane pane = new Pane(labelStage);
         addUINode(pane);
@@ -286,14 +287,15 @@ public class RPSApp extends GameApplication {
         SpriteData spriteHero = new SpriteData("characters/Hero.png", 6, 64, 64, 0, 9, 1);
 
         enemyComps.add(new CharacterComponent("Noob Fighter", "Weak Attack", "", 1,5,1,1, spriteFighter));
-        enemyComps.add(new CharacterComponent("Evil Fighter", "Big DAMAGE", "", 1,15,6,3, spriteFighter));
-        enemyComps.add(new CharacterComponent("Evil Hero", "Evil Attack", "", 1,10,3,2, spriteHero));
-        enemyComps.add(new CharacterComponent("Super Evil Hero", "Super Evil", "", 1,10,3,3, spriteHero));
+        enemyComps.add(new CharacterComponent("Evil Fighter", "Big DAMAGE", "", 1,9,3,3, spriteFighter));
+        enemyComps.add(new CharacterComponent("Evil Hero", "Evil Attack", "", 1,8,2,2, spriteHero));
+        enemyComps.add(new CharacterComponent("Super Evil Hero", "Super Attack", "", 1,12,4,2, spriteHero));
 
         enemy = FXGL.entityBuilder()
                 .at(830, 460)
                 .with(new AnimationComponent(enemyComps.get(enemyID).getSpriteData(), false))
                 .buildAndAttach();
+        paneEnemy = boxPanel(enemyComps.get(enemyID), 0, false);
     }
 
     protected void spawnEnemy(){
@@ -322,12 +324,16 @@ public class RPSApp extends GameApplication {
         labelStage.setText("Stage " + stage + " Round " + round);
     }
 
-    protected void addStats(CharacterComponent CC){
+    protected void addStats(CharacterComponent CC, boolean isEnemy){
         int CC_Level = CC.getLevel() + 1;
         int CC_MaxHP = CC.getMaxHp();
         int CC_CurrentHP = CC.getCurrentHp();
         int CC_MaxShield = CC.getMaxShield();
         int CC_Damage = CC.getDamage();
+
+        if(isEnemy){
+            CC_CurrentHP = CC_MaxHP;
+        }
 
         // Level
         CC.setLevel(CC_Level);
@@ -354,6 +360,7 @@ public class RPSApp extends GameApplication {
         // Shield
         int randomShield = randomNumGenerator(0, 2);
         CC.setMaxShield(CC_MaxShield + randomShield + shieldBoost);
+        CC.setCurrentShield(CC_MaxShield + randomShield + shieldBoost);
         CC.getShield().setValue(CC_MaxShield + randomShield + shieldBoost);
 
         // Damage
@@ -383,7 +390,7 @@ public class RPSApp extends GameApplication {
         bgRect.setLayoutY(y - 10);
         bgRect.setOpacity(0.8);
         Text levelName = getUIFactoryService().newText(CC.getName(), Color.WHITE, 18);
-        Text skill = getUIFactoryService().newText( "Skill: " + CC.getSkillName() + "   ", Color.WHITE, 18);
+        Text skill = getUIFactoryService().newText( "Skill: " + CC.getSkillName(), Color.WHITE, 18);
 
         ProgressBar barHP = new ProgressBar(false);
         barHP.currentValueProperty().bind(CC.getHp().valueProperty());
@@ -677,7 +684,7 @@ public class RPSApp extends GameApplication {
         } else if(result.equals("Lose")){
             // When Lose, Player attack, Enemy do not attack
             System.out.println("LOSE");
-            labelInfo.setText("You lose, you cannot attack");
+            labelInfo.setText("You LOSE! You cannot attack!");
 
             // Delay
             Timeline delay = new Timeline(
@@ -694,7 +701,7 @@ public class RPSApp extends GameApplication {
 
     protected void characterAttack(){
         boolean isAttack = false;
-        CharacterComponent enemyCC = enemyComps.get(0);
+        CharacterComponent enemyCC = enemyComps.get(enemyID);
         int enemyHp = enemyCC.getCurrentHp();
         int enemyShield = enemyCC.getCurrentShield();
         int damage = actingCharacter.getDamage();
@@ -810,11 +817,11 @@ public class RPSApp extends GameApplication {
     }
 
     protected void enemyAttack(){
-        int enemyDamage = enemyComps.get(0).getDamage();
+        int enemyDamage = enemyComps.get(enemyID).getDamage();
         if(isBoss){
             enemyDamage = enemyDamage * randomNumGenerator(1,2);
         }
-        int tempDamage = enemyDamage;
+        int damageAfterShield;
         int randomNum = randomNumGenerator(0, 2);
         if(isGuard){
             randomNum = selectedBox;
@@ -847,17 +854,19 @@ public class RPSApp extends GameApplication {
 
         int playerHP = CC.getCurrentHp();
         int playerShield = CC.getCurrentShield();
-        enemyDamage = enemyDamage - playerShield;
-        CC.getShield().damage(enemyDamage - (enemyDamage-playerShield));
-        if(enemyDamage > 0) {
-            playerHP = playerHP - enemyDamage;
+        damageAfterShield = enemyDamage - playerShield;
+        if(damageAfterShield >= 0){
+            CC.getShield().damage(playerShield);
+            CC.getHp().damage(damageAfterShield);
+            playerHP = playerHP - damageAfterShield;
             playerShield = 0;
-            CC.getHp().damage(enemyDamage);
         } else {
-            playerShield = playerShield - (enemyDamage + playerShield);
+            playerShield = playerShield - enemyDamage;
+            CC.getShield().damage(enemyDamage);
         }
-        labelInfo.setText("Enemy deal " + tempDamage + " damage to " + CC.getName());
-        System.out.println("Enemy deal " + tempDamage + " damage to " + CC.getName());
+
+        labelInfo.setText("Enemy deal " + enemyDamage + " damage to " + CC.getName());
+        System.out.println("Enemy deal " + enemyDamage + " damage to " + CC.getName());
 
         if(playerHP <= 0){
             // Delay
@@ -868,6 +877,9 @@ public class RPSApp extends GameApplication {
             delay.setOnFinished(e -> {
                 labelInfo.setText("Your " + CC.getName() + " die");
                 characterDead(CC, finalRandomNum);
+                if(selectedBox == finalRandomNum){
+                    selectHighLightBox(finalRandomNum);
+                }
             });
             delay.play();
         } else {
@@ -893,6 +905,33 @@ public class RPSApp extends GameApplication {
             isP3Dead = true;
             p3.removeFromWorld();
             removeUINode(pane3);
+        }
+    }
+    protected void selectHighLightBox(int num){
+        if (num == 0){
+            if(!isP2Dead){
+                selectedBox = 1;
+                actingCharacter = characterComps.get(1);
+            } else {
+                selectedBox = 2;
+                actingCharacter = characterComps.get(2);
+            }
+        } else if (num == 1) {
+            if(!isP1Dead){
+                selectedBox = 0;
+                actingCharacter = characterComps.get(0);
+            } else {
+                selectedBox = 2;
+                actingCharacter = characterComps.get(2);
+            }
+        } else if (num == 2) {
+            if (!isP1Dead) {
+                selectedBox = 0;
+                actingCharacter = characterComps.get(0);
+            } else {
+                selectedBox = 1;
+                actingCharacter = characterComps.get(1);
+            }
         }
     }
     protected void endStage(){
