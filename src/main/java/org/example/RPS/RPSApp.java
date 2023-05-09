@@ -16,6 +16,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -24,9 +26,12 @@ import javafx.util.Duration;
 import org.example.RPS.animation.AnimationComponent;
 import org.example.RPS.animation.SpriteData;
 import org.example.RPS.component.CharacterComponent;
+import org.example.RPS.db.JdbcUtils;
+import org.example.RPS.view.GameMainMenu;
 import org.example.RPS.view.GameSettings;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static com.almasb.fxgl.app.GameApplication.launch;
@@ -37,6 +42,8 @@ import static com.almasb.fxgl.dsl.FXGLForKtKt.getUIFactoryService;
 public class RPSApp extends GameApplication {
     private GameApplication app;
     GameSettings setting = new GameSettings();
+    private static String userName;
+    private static int highScore;
     private HealthIntComponent hp1, hp2, hp3, shield1, shield2, shield3;
     private Entity p1, p2, p3, enemy;
     private Entity rock, paper, scissor;
@@ -54,11 +61,12 @@ public class RPSApp extends GameApplication {
     private int round = 1;
     private Text labelStage, labelInfo;
     private Button nextAction;
-    private Boolean isP1Dead, isP2Dead, isP3Dead;
+    private Boolean isP1Dead, isP2Dead, isP3Dead, isEnemyDead;
     private Boolean isBoss;
     private Boolean isGuard = false;
     private Boolean isDraw = false;
     private Timeline timeLineBattle;
+    private MediaPlayer gameSound;
 
 //    private String action;
 
@@ -83,6 +91,12 @@ public class RPSApp extends GameApplication {
         // Set Background
         getGameWorld().addEntityFactory(new GameEntityFactory());
         spawn("background");
+
+        Media media = new Media(getClass().getResource("/assets/sounds/gameMusic.wav").toExternalForm());
+        gameSound = new MediaPlayer(media);
+        gameSound.play();
+        gameSound.setCycleCount(MediaPlayer.INDEFINITE);
+        gameSound.setVolume(0.5);
 
         initVariables();
         initStage();
@@ -147,6 +161,10 @@ public class RPSApp extends GameApplication {
         });
     }
 
+    public static void setData(String NAME, int SCORE){
+        userName = NAME;
+        highScore = SCORE;
+    }
     protected void initStage(){
         labelStage.setText("Stage " + stage + " Round " + round);
         initCharacter();
@@ -157,6 +175,7 @@ public class RPSApp extends GameApplication {
         addUINode(pane3);
         addUINode(paneEnemy);
         actingCharacter = characterComps.get(0);
+        selectedBox = 0;
         startRPS();
     }
 
@@ -165,32 +184,38 @@ public class RPSApp extends GameApplication {
         for (int i = 0; i < enemyComps.size(); i++) {
             addStats(enemyComps.get(i), true);
         }
-
         if(!isP1Dead){
             addStats(characterComps.get(0), false);
-            addUINode(pane1);
         }
         if(!isP2Dead){
             addStats(characterComps.get(1), false);
-            addUINode(pane2);
         }
         if(!isP3Dead){
             addStats(characterComps.get(2), false);
-            addUINode(pane3);
         }
         spawnBoxPanels();
+        if(!isP1Dead){
+            addUINode(pane1);
+        }
+        if(!isP2Dead){
+            addUINode(pane2);
+        }
+        if(!isP3Dead){
+            addUINode(pane3);
+        }
         spawnEnemy();
-
 
         addUINode(paneEnemy);
     }
 
     protected void initVariables(){
-        finishBattle = FXGL.entityBuilder().at(800, 600).view(new Rectangle(100, 100, Color.BLACK)).buildAndAttach();
+        finishBattle = FXGL.entityBuilder().at(800, 600).view("ui/attack.png").buildAndAttach();
+        finishBattle.setScaleX(0.05);
+        finishBattle.setScaleY(0.05);
         finishBattle.setVisible(false);
 
         timeLineBattle = new Timeline(
-                new KeyFrame(Duration.seconds(0.5)
+                new KeyFrame(Duration.seconds(1.5)
                 ));
 
         highlight = FXGL.entityBuilder().view(new Rectangle(194, 154, Color.WHITE)).buildAndAttach();
@@ -250,7 +275,7 @@ public class RPSApp extends GameApplication {
         SpriteData spriteFighter = new SpriteData("characters/Fighter.png", 6, 64, 64, 0, 9, 1);
 
         // Input Character into Data
-        characterDataComps.add(new CharacterComponent("Hero", "Justice Attack", "", 1,10,1,2, spriteHero));
+        characterDataComps.add(new CharacterComponent("Hero", "Justice", "", 1,10,1,2, spriteHero));
         characterDataComps.add(new CharacterComponent("Wizard", "Fireball", "", 1,5,1,3, spriteWizard));
         characterDataComps.add(new CharacterComponent("Healer", "Heal", "",1,6,1,1, spriteHealer));
         characterDataComps.add(new CharacterComponent("Guard", "Guard Team", "", 1,15,1,1, spriteGuard));
@@ -281,12 +306,13 @@ public class RPSApp extends GameApplication {
 
     protected void initEnemy(){
         isBoss = false;
+        isEnemyDead = false;
 
         // Sprite Data
         SpriteData spriteFighter = new SpriteData("characters/Fighter.png", 6, 64, 64, 0, 9, 1);
         SpriteData spriteHero = new SpriteData("characters/Hero.png", 6, 64, 64, 0, 9, 1);
 
-        enemyComps.add(new CharacterComponent("Noob Fighter", "Weak Attack", "", 1,5,1,1, spriteFighter));
+        enemyComps.add(new CharacterComponent("Noob Fighter", "Weak Attack", "", 1,50,1,20, spriteFighter));
         enemyComps.add(new CharacterComponent("Evil Fighter", "Big DAMAGE", "", 1,9,3,3, spriteFighter));
         enemyComps.add(new CharacterComponent("Evil Hero", "Evil Attack", "", 1,8,2,2, spriteHero));
         enemyComps.add(new CharacterComponent("Super Evil Hero", "Super Attack", "", 1,12,4,2, spriteHero));
@@ -304,6 +330,7 @@ public class RPSApp extends GameApplication {
         } else {
             isBoss = false;
         }
+        isEnemyDead = false;
 
         enemyID = randomNumGenerator(0, 3);
         enemy = FXGL.entityBuilder()
@@ -314,14 +341,20 @@ public class RPSApp extends GameApplication {
         paneEnemy = boxPanel(enemyComps.get(enemyID), 0, false);
     }
     protected void startRPS() {
-        rock.setVisible(true);
-        paper.setVisible(true);
-        scissor.setVisible(true);
-        highlight.setVisible(false);
-        finishBattle.setVisible(false);
-        bgLabelInfo.setVisible(false);
-        isDraw = false;
-        labelStage.setText("Stage " + stage + " Round " + round);
+        if(isP1Dead && isP2Dead && isP3Dead){
+            System.out.println("GameOver");
+            GameOver();
+        } else {
+            System.out.println("Start RPS");
+            rock.setVisible(true);
+            paper.setVisible(true);
+            scissor.setVisible(true);
+            highlight.setVisible(false);
+            finishBattle.setVisible(false);
+            bgLabelInfo.setVisible(false);
+            isDraw = false;
+            labelStage.setText("Stage " + stage + " Round " + round);
+        }
     }
 
     protected void addStats(CharacterComponent CC, boolean isEnemy){
@@ -356,12 +389,14 @@ public class RPSApp extends GameApplication {
         CC.setMaxHp(CC_MaxHP + randomHP + hpBoost);
         CC.setCurrentHp(CC_CurrentHP + randomHP + hpBoost);
         CC.getHp().setValue(CC_CurrentHP + randomHP + hpBoost);
+        CC.getHp().setMaxValue(CC_MaxHP + randomHP + hpBoost);
 
         // Shield
         int randomShield = randomNumGenerator(0, 2);
         CC.setMaxShield(CC_MaxShield + randomShield + shieldBoost);
         CC.setCurrentShield(CC_MaxShield + randomShield + shieldBoost);
         CC.getShield().setValue(CC_MaxShield + randomShield + shieldBoost);
+        CC.getShield().setMaxValue(CC_MaxShield + randomShield + shieldBoost);
 
         // Damage
         double randomDamage = Math.random();
@@ -390,7 +425,15 @@ public class RPSApp extends GameApplication {
         bgRect.setLayoutY(y - 10);
         bgRect.setOpacity(0.8);
         Text levelName = getUIFactoryService().newText(CC.getName(), Color.WHITE, 18);
-        Text skill = getUIFactoryService().newText( "Skill: " + CC.getSkillName(), Color.WHITE, 18);
+        Text skill = getUIFactoryService().newText( "Skill: " + CC.getSkillName() + " | Damage: " + CC.getDamage(), Color.WHITE, 14);
+        String tempName;
+        if(isPlayer){
+            tempName = "Skill: " + CC.getSkillName() + " | Damage: " + CC.getDamage();
+            skill.setText(tempName);
+        } else {
+            tempName = "Skill: " + CC.getSkillName() + " (" + CC.getDamage() + ")";
+            skill.setText(tempName);
+        }
 
         ProgressBar barHP = new ProgressBar(false);
         barHP.currentValueProperty().bind(CC.getHp().valueProperty());
@@ -416,16 +459,6 @@ public class RPSApp extends GameApplication {
 
         var boxHP = new HBox(-1, barHP, textHP, textHP2);
         var boxShield = new HBox(-1, barShield, textShield, textShield2);
-
-//        Button clickMe = new Button();
-//        clickMe.setId(num + "");
-//        clickMe.setText("Click Me");
-//        clickMe.setOnAction(event -> {
-//            actingCharacter = CC;
-//            selectedBox = num;
-//            highlight.setPosition(3, 100 + 180*selectedBox - 12);
-//            System.out.println(actingCharacter.getName() + "   " + selectedBox);
-//        });
 
         VBox box = new VBox(6);//登录VBOX
         box.setAlignment(Pos.CENTER_LEFT);
@@ -790,6 +823,7 @@ public class RPSApp extends GameApplication {
         }
         if(isAttack){
             if(enemyHp <= 0){
+                isEnemyDead = true;
                 // Delay End Stage
                 Timeline delayEndStage = new Timeline(
                         new KeyFrame(Duration.seconds(1.5)
@@ -805,10 +839,12 @@ public class RPSApp extends GameApplication {
                 int finalRandomNum = 0;
                 delay.setOnFinished(e -> {
                     labelInfo.setText("Enemy " + enemyCC.getName() + " die");
+                    FXGL.play("hurt.wav");
                     delayEndStage.play();
                 });
                 delay.play();
             } else {
+                FXGL.play("hurt.wav");
                 enemyCC.setCurrentHp(enemyHp);
                 enemyCC.setCurrentShield(enemyShield);
             }
@@ -855,18 +891,25 @@ public class RPSApp extends GameApplication {
         int playerHP = CC.getCurrentHp();
         int playerShield = CC.getCurrentShield();
         damageAfterShield = enemyDamage - playerShield;
-        if(damageAfterShield >= 0){
-            CC.getShield().damage(playerShield);
-            CC.getHp().damage(damageAfterShield);
-            playerHP = playerHP - damageAfterShield;
-            playerShield = 0;
-        } else {
-            playerShield = playerShield - enemyDamage;
-            CC.getShield().damage(enemyDamage);
+        if(!isEnemyDead){
+            if(damageAfterShield >= 0){
+                CC.getShield().damage(playerShield);
+                CC.getHp().damage(damageAfterShield);
+                playerHP = playerHP - damageAfterShield;
+                playerShield = 0;
+            } else {
+                playerShield = playerShield - enemyDamage;
+                CC.getShield().damage(enemyDamage);
+            }
         }
 
-        labelInfo.setText("Enemy deal " + enemyDamage + " damage to " + CC.getName());
-        System.out.println("Enemy deal " + enemyDamage + " damage to " + CC.getName());
+        if(!isEnemyDead){
+            labelInfo.setText("Enemy deal " + enemyDamage + " damage to " + CC.getName());
+            System.out.println("Enemy deal " + enemyDamage + " damage to " + CC.getName());
+        } else {
+            System.out.println("Enemy Died");
+        }
+
 
         if(playerHP <= 0){
             // Delay
@@ -883,8 +926,12 @@ public class RPSApp extends GameApplication {
             });
             delay.play();
         } else {
-            CC.setCurrentHp(playerHP);
-            CC.setCurrentShield(playerShield);
+            if(!isEnemyDead){
+                System.out.println(isEnemyDead);
+                FXGL.play("hurt.wav");
+                CC.setCurrentHp(playerHP);
+                CC.setCurrentShield(playerShield);
+            }
         }
         System.out.println("Success Enemy Attack");
     }
@@ -892,6 +939,7 @@ public class RPSApp extends GameApplication {
         if(CC.getSkillName().equals("Guard Team")){
             isGuard = false;
         }
+        FXGL.play("hurt.wav");
         if(num == 0){
             isP1Dead = true;
             p1.removeFromWorld();
@@ -906,6 +954,7 @@ public class RPSApp extends GameApplication {
             p3.removeFromWorld();
             removeUINode(pane3);
         }
+        System.out.println("P1Dead: " + isP1Dead + "P2Dead: " + isP2Dead + "P3Dead: " + isP3Dead);
     }
     protected void selectHighLightBox(int num){
         if (num == 0){
@@ -936,7 +985,7 @@ public class RPSApp extends GameApplication {
     }
     protected void endStage(){
         stage = stage + 1;
-        round = 1;
+        round = 0;
 
         // Remove Box Panels
         removeUINode(pane1);
@@ -949,10 +998,6 @@ public class RPSApp extends GameApplication {
 
         endStageScene();
         nextStage();
-    }
-
-    protected void GameOver(){
-
     }
 
     protected void endStageScene() {
@@ -982,7 +1027,46 @@ public class RPSApp extends GameApplication {
         });
         pt.play();
     }
+    protected void GameOver(){
+        int tempScore;
+        if(stage > highScore){
+            tempScore = stage;
+        } else {
+            tempScore = highScore;
+        }
+        updateHighScore(tempScore);
 
+        Texture gameOver = texture("ui/GameOver.png");
+        gameOver.setScaleX(2);
+        gameOver.setScaleY(2);
+        gameOver.setTranslateY(getAppHeight() - gameOver.getHeight() - 100);
+        gameOver.setTranslateX(gameOver.getWidth() / 2.0);
+        TranslateTransition tt = new TranslateTransition(Duration.seconds(3.8), gameOver);
+        tt.setInterpolator(Interpolators.ELASTIC.EASE_OUT());
+        tt.setToY(getAppHeight() / 2.0 - gameOver.getHeight() / 2);
+        tt.setOnFinished(e -> {
+            gameOver.setTranslateY(getAppHeight() - gameOver.getHeight() + 24);
+            getGameController().gotoMainMenu();
+        });
+        tt.play();
+
+    }
+
+    private boolean updateHighScore(int score) {
+        JdbcUtils jdbcUtils = new JdbcUtils();
+        jdbcUtils.getConnection();
+
+        String sql = "UPDATE users SET highscore = ? WHERE username = ?";
+        List<String> params = new ArrayList<>();
+        params.add(Integer.toString(score));
+        params.add(userName);
+        try {
+            return jdbcUtils.insert(sql, params) == 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
     public static void main(String[] args) {
         launch(args);
     }

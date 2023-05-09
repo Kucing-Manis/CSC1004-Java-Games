@@ -8,10 +8,11 @@ public class JdbcUtils {
     private static final String PASSWORD = "sirlolipop13";
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String URL = "jdbc:mysql://localhost:3306/userdbs";
-//    jdbc:mysql://localhost:3308/newsSystem?allowPublicKeyRetrieval=true&useSSL=false&characterEncoding=utf-8
+    //    jdbc:mysql://localhost:3308/newsSystem?allowPublicKeyRetrieval=true&useSSL=false&characterEncoding=utf-8
     private Connection connection;
     private PreparedStatement ps;
     private ResultSet resultSet;
+    private int highScore;
 
     public JdbcUtils() {
         try {
@@ -56,4 +57,18 @@ public class JdbcUtils {
         return ps.executeUpdate();
     }
 
+    public int getHighScorefromSQL(String sql, List<String> params) throws SQLException {
+        int highScore = 10;
+        ps = connection.prepareStatement(sql);
+        if (params != null && !params.isEmpty()) {
+            for (int i = 0; i < params.size(); i++) {
+                ps.setObject(i + 1, params.get(i));
+            }
+        }
+        resultSet = ps.executeQuery();
+        while (resultSet.next()) {
+            highScore = resultSet.getInt("highscore");
+        }
+        return highScore;
+    }
 }
