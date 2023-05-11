@@ -79,7 +79,7 @@ public class GameMainMenu extends FXGLMenu {
         jdbcUtils.getConnection();
 
         // Gender (0 = female, 1 = male)
-        String sql = "insert into `users` (username, password, email, age, gender) values (?,?,?,?,?)";
+        String sql = "INSERT into `users` (username, password, email, age, gender) values (?,?,?,?,?)";
         List<String> params = new ArrayList<>();
         params.add(username);
         params.add(password);

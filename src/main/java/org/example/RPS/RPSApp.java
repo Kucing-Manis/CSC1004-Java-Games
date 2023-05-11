@@ -196,7 +196,7 @@ public class RPSApp extends GameApplication {
         startRPS();
     }
 
-    // Next Stage (after defeating the enemy)
+    // Next Stage (after defeating or killing the enemy)
     protected void nextStage(){
         labelStage.setText("Stage " + stage + " Round " + round);
         for (int i = 0; i < enemyComps.size(); i++) {
@@ -557,7 +557,7 @@ public class RPSApp extends GameApplication {
     }
 
     // Enemy Random Pick RPS
-    protected String enemyNormalPick(String playerPick){
+    protected String enemyPick(String playerPick){
         double random = Math.random();
         String enemyPick = "rock";
 
@@ -599,7 +599,7 @@ public class RPSApp extends GameApplication {
 
     // Check Win, Draw, or Lose in Rock Paper Scissor
     protected void calculateEnemyRPS(String playerPick) {
-        String enemyPick = enemyNormalPick(playerPick);
+        String enemyPick = enemyPick(playerPick);
 
         // Check Player vs Enemy in RPS (Win or Draw or Lose)
         String resultRPS = "";

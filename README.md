@@ -4,7 +4,6 @@ Creating A Rock Paper Scissor RPG Game
 Inspired by the game Slice & Dice.
 
 Idea:
-
 Creating an RPG turn base game with rock, paper, and scissor. 
 My idea is to do an infinite level where when the players defeat the enemy, the players will go to the next stage and fight harder enemies. 
 
@@ -18,22 +17,4 @@ To make the game more interesting, I will probably add a special ability call â€
 
 Story:
 Not yet
-
-Step:
-1. Fix Login and Main Menu Path 
-2. Animation Fix Bettter
-3. Game GUI 
-4. Enemy Spawn Factory 
-5. Enemy and Character Data 
-6. Gameplay 1 battle (Check finish if hp player or enemy = 0)
-7. Infinite Loop Level
-
-Need to be Add or change:
-1. Database and Register need Adress, Gender, Age, Highscore
-2. Story
-3. Tutorial
-4. Video Presentation
-5. Documentation
-6. Voice or Video
-7. Multiplayers or Webgame
 
