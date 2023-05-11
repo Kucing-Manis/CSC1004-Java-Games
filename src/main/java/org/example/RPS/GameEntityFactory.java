@@ -13,6 +13,7 @@ import static com.almasb.fxgl.dsl.FXGLForKtKt.entityBuilder;
 
 public class GameEntityFactory implements EntityFactory {
 
+    // Spawn Game Background Image
     @Spawns("background")
     public Entity newBackground(SpawnData data) {
         return entityBuilder()

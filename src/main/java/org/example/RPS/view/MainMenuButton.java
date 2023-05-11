@@ -10,20 +10,15 @@ import static com.almasb.fxgl.dsl.FXGL.texture;
 public class MainMenuButton extends RadioButton {
 
     public MainMenuButton(String text, Runnable action) {
-        Texture texture = texture("ui/point.png");
+        Texture texture = texture("ui/Point.png");
         texture.setVisible(false);
         texture.setRotate(90);
         setGraphic(texture);
         setGraphicTextGap(30);
         getStyleClass().add("main-menu-btn");
         setText(text);
+        // Set Sound Effect
         selectedProperty().addListener((ob, ov, nv) -> texture.setVisible(nv));
-        setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                play("select.wav");
-                action.run();
-            }
-        });
         setOnMouseClicked(event -> {
             play("select.wav");
             action.run();

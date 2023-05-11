@@ -13,15 +13,18 @@ public class CharacterComponent {
 
     // Character Stats
     private String name, skillName, description;
+    // Description is currently not used
     private int level, currentHp, maxHp, currentShield, maxShield, damage;
+    // CurrentHp cannot be bigger that MaxHp
+    // CurrentShield cannot be bigger than MaxShield
     private HealthIntComponent hp = new HealthIntComponent(10);
     private HealthIntComponent shield = new HealthIntComponent(7);
-    // Level is the same as Stage Level
-    // Hp = Health Point (When hp is 0, the character die)
-    // Shield protect health point | The enemy will damage shield first | Shield will also generate back after each InitRPS | Pierce damage ignore shield
-    // Damage is the amount of damage the character will do to the enemy. Do instance, enemy hp = 9, character damage 3. After the character attack the enemy once, the enemy hp = 9-3 = 6.
+    // Level is the same as Stage Level (Will be used to get stats boost)
+    // Hp = Health Point (When hp is 0, the character or enemy die)
+    // Shield protect health point | The enemy will damage shield first | Shield will also generate back after each Stage | Pierce damage ignore shield
+    // Damage is the amount of damage the character will do to the enemy. For instance, enemy hp = 9, character damage 3. After the character attack the enemy once, the enemy hp = 9-3 = 6.
 
-    private SpriteData spriteData;
+    private SpriteData spriteData; // To set the character animation
 
     public CharacterComponent(String NAME, String SKILLNAME, String DESCRIPTION, int LEVEL, int HP, int SHIELD , int DAMAGE, SpriteData SPRITEDATA){
         this.name = NAME;

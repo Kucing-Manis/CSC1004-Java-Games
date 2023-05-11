@@ -40,64 +40,59 @@ import static com.almasb.fxgl.dsl.FXGL.addUINode;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.getUIFactoryService;
 
 public class RPSApp extends GameApplication {
-    private GameApplication app;
     GameSettings setting = new GameSettings();
     private static String userName;
     private static int highScore;
-    private HealthIntComponent hp1, hp2, hp3, shield1, shield2, shield3;
     private Entity p1, p2, p3, enemy;
     private Entity rock, paper, scissor;
-    private Entity finishBattle, highlight, bgLabelInfo, bgLabelStage;
-//    private CharacterComponent heroComp, wizardComp, healerComp, guardComp, fighterComp;
+    private Entity finishBattle, highlight, bgLabelInfo, bgLabelStage, gameOver, cheat, noCheat;
     private ArrayList<CharacterComponent> characterDataComps = new ArrayList<>();
     private ArrayList<CharacterComponent> characterComps = new ArrayList<>();
     private ArrayList<CharacterComponent> enemyComps = new ArrayList<>();
     private CharacterComponent actingCharacter;
-
     private Pane pane1,pane2,pane3,paneEnemy;
     private int enemyID = 0;
     private int selectedBox = 0;
     private int stage = 1;
     private int round = 1;
     private Text labelStage, labelInfo;
-    private Button nextAction;
     private Boolean isP1Dead, isP2Dead, isP3Dead, isEnemyDead;
     private Boolean isBoss;
     private Boolean isGuard = false;
     private Boolean isDraw = false;
+    private Boolean isCheatingMode = false;
     private Timeline timeLineBattle;
     private MediaPlayer gameSound;
 
-//    private String action;
-
     @Override
     protected void initSettings(com.almasb.fxgl.app.GameSettings settings) {
-        setting.initSettings(settings);
-        // GameSettings hapus g berguna
+        setting.initSettings(settings); // Initiate the settings from view/GameSettings
         settings.setTitle("Rock Paper Scissor RPG");
         settings.setVersion("0.1");
-//        settings.setAppIcon();
         settings.getCSSList().add("RPSApp.css");
-        settings.setDefaultCursor(new CursorInfo("ui/cursor.png", 0, 0));
-
+        settings.setDefaultCursor(new CursorInfo("ui/Cursor.png", 0, 0)); // Set the cursor into ui/Cursor.png
     }
 
     @Override
     protected void initInput() {
+        // Not Used
     }
 
+    // When starting the game, initGame() function run first time
     @Override
     protected void initGame() {
         // Set Background
         getGameWorld().addEntityFactory(new GameEntityFactory());
         spawn("background");
 
+        // Play Background Music
         Media media = new Media(getClass().getResource("/assets/sounds/gameMusic.wav").toExternalForm());
         gameSound = new MediaPlayer(media);
         gameSound.play();
-        gameSound.setCycleCount(MediaPlayer.INDEFINITE);
+        gameSound.setCycleCount(MediaPlayer.INDEFINITE); // Cause it loop infinitely
         gameSound.setVolume(0.5);
 
+        // Call function
         initVariables();
         initStage();
 
@@ -112,6 +107,20 @@ public class RPSApp extends GameApplication {
             calculateEnemyRPS("scissor");
         });
 
+        // Set CheatMode Click Function
+        cheat.getViewComponent().addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
+            isCheatingMode = true;
+            cheat.setVisible(false);
+            noCheat.setVisible(true);
+            System.out.println(isCheatingMode);
+        });
+        noCheat.getViewComponent().addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
+            isCheatingMode = false;
+            cheat.setVisible(true);
+            noCheat.setVisible(false);
+            System.out.println(isCheatingMode);
+        });
+
         //Finish Battle Click Function
         finishBattle.getViewComponent().addEventHandler(MouseEvent.MOUSE_PRESSED, a -> {
             finishBattle.setVisible(false);
@@ -124,7 +133,7 @@ public class RPSApp extends GameApplication {
                 timeLineBattle.play();
             });
 
-            // If Win or Draw
+            // If Win or Draw (If draw enemy attack, if win, enemy do not attack)
             if (isDraw){
                 Timeline delayEnemyAttack = new Timeline(
                         new KeyFrame(Duration.seconds(2)
@@ -140,50 +149,61 @@ public class RPSApp extends GameApplication {
 
         });
 
-        //Players Click Function (To Select Skill)
+        //Players Click Function (To select skill, Click the character)
         p1.getViewComponent().addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
             actingCharacter = characterComps.get(0);
             selectedBox = 0;
             highlight.setPosition(3, 100 + 180*selectedBox - 12);
-            System.out.println(actingCharacter.getName() + "   " + selectedBox);
         });
         p2.getViewComponent().addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
             actingCharacter = characterComps.get(1);
             selectedBox = 1;
             highlight.setPosition(3, 100 + 180*selectedBox - 12);
-            System.out.println(actingCharacter.getName() + "   " + selectedBox);
         });
         p3.getViewComponent().addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
             actingCharacter = characterComps.get(2);
             selectedBox = 2;
             highlight.setPosition(3, 100 + 180*selectedBox - 12);
-            System.out.println(actingCharacter.getName() + "   " + selectedBox);
         });
     }
 
+    // Set the data of username and highscore (GameMainMenu will call this function and transfer the data to RPSApp)
     public static void setData(String NAME, int SCORE){
         userName = NAME;
         highScore = SCORE;
     }
+
+    // Initialize the first stage
     protected void initStage(){
-        labelStage.setText("Stage " + stage + " Round " + round);
+        isCheatingMode = false;
+        labelStage.setText("Stage " + stage + " Round " + round); // Set the labelStage
+        // Spawn or Initialize characters, enemy, and box panels
         initCharacter();
         initEnemy();
         spawnBoxPanels();
+
+        // Add UI Node of the box panels
         addUINode(pane1);
         addUINode(pane2);
         addUINode(pane3);
         addUINode(paneEnemy);
+
+        // Set actingCharacter and selectedBox
         actingCharacter = characterComps.get(0);
         selectedBox = 0;
+
+        // Start Rock Paper Scissor
         startRPS();
     }
 
+    // Next Stage (after defeating the enemy)
     protected void nextStage(){
         labelStage.setText("Stage " + stage + " Round " + round);
         for (int i = 0; i < enemyComps.size(); i++) {
             addStats(enemyComps.get(i), true);
         }
+
+        // Check if p1 or p2 or p3 is dead. If dead, then no addstats and no addUINode
         if(!isP1Dead){
             addStats(characterComps.get(0), false);
         }
@@ -203,29 +223,57 @@ public class RPSApp extends GameApplication {
         if(!isP3Dead){
             addUINode(pane3);
         }
-        spawnEnemy();
 
+        // Spawn new random enemy
+        spawnEnemy();
         addUINode(paneEnemy);
+
+        // Deactivating the Guard Skill
+        isGuard = false;
     }
 
+    // Initialize the variables
     protected void initVariables(){
-        finishBattle = FXGL.entityBuilder().at(800, 600).view("ui/attack.png").buildAndAttach();
+        // GameOver Image
+        gameOver = FXGL.entityBuilder().at(320, 300).view("ui/GameOver.png").buildAndAttach();
+        gameOver.setScaleX(5);
+        gameOver.setScaleY(5);
+        gameOver.setVisible(false);
+
+        // Image acting as a button to end the battle and startRPS() function
+        finishBattle = FXGL.entityBuilder().at(800, 600).view("ui/Attack.png").buildAndAttach();
         finishBattle.setScaleX(0.05);
         finishBattle.setScaleY(0.05);
         finishBattle.setVisible(false);
 
+        // Image acting as a button to start or enable cheating mode
+        cheat = FXGL.entityBuilder().at(13, 610).view("ui/Cheat.png").buildAndAttach();
+        cheat.setScaleX(0.65);
+        cheat.setScaleY(0.65);
+        cheat.setVisible(true);
+
+        // Image acting as a button to stop or disable cheating mode
+        noCheat = FXGL.entityBuilder().at(43, 630).view("ui/NoCheat.png").buildAndAttach();
+        noCheat.setScaleX(0.1);
+        noCheat.setScaleY(0.1);
+        noCheat.setVisible(false);
+
+        // Time delay for starting the startRPS() function
         timeLineBattle = new Timeline(
                 new KeyFrame(Duration.seconds(1.5)
                 ));
 
+        // Highlight the selectedBox
         highlight = FXGL.entityBuilder().view(new Rectangle(194, 154, Color.WHITE)).buildAndAttach();
         highlight.setVisible(false);
         highlight.setOpacity(0.8);
         highlight.setPosition(3, 100 + 180*selectedBox - 12);
 
+        // White Background for the labelStage
         bgLabelStage = FXGL.entityBuilder().at(getAppWidth() / 2.0 - 210, getAppHeight() - 685).view(new Rectangle(420, 70, Color.WHITE)).buildAndAttach();
         bgLabelStage.setOpacity(0.65);
 
+        // Set the Stage and Round text
         labelStage = new Text();
         labelStage.setFill(Color.BLACK);
         labelStage.setFont(new Font(50));
@@ -235,19 +283,22 @@ public class RPSApp extends GameApplication {
         Pane pane = new Pane(labelStage);
         addUINode(pane);
 
+        // White Background for the labelInfo
         bgLabelInfo = FXGL.entityBuilder().at(getAppWidth() / 2.0 - 205, getAppHeight() - 595).view(new Rectangle(410, 45, Color.WHITE)).buildAndAttach();
         bgLabelInfo.setOpacity(0.65);
         bgLabelInfo.setVisible(false);
 
+        // Set the information text
         labelInfo = new Text();;
         labelInfo.setFill(Color.BLACK);
         labelInfo.setFont(new Font(25));
         labelInfo.setLayoutX(getAppWidth() / 2.0 - 180);
         labelInfo.setLayoutY(getAppHeight() - 560);
 
-        rock = FXGL.entityBuilder().at(200, 600).view("ui/Rock.png").buildAndAttach();
-        paper = FXGL.entityBuilder().at(400, 600).view("ui/Paper.jpeg").buildAndAttach();
-        scissor = FXGL.entityBuilder().at(600, 600).view("ui/Scissor.png").buildAndAttach();
+        // Set the image for the Rock, Paper, and Scissor
+        rock = FXGL.entityBuilder().at(230, 600).view("ui/Rock.png").buildAndAttach();
+        paper = FXGL.entityBuilder().at(430, 600).view("ui/Paper.jpeg").buildAndAttach();
+        scissor = FXGL.entityBuilder().at(630, 600).view("ui/Scissor.png").buildAndAttach();
         rock.setScaleX(0.27);
         rock.setScaleY(0.27);
         paper.setScaleX(0.27);
@@ -256,12 +307,14 @@ public class RPSApp extends GameApplication {
         scissor.setScaleY(0.27);
     }
 
+    // Spawn box panels
     protected void spawnBoxPanels(){
         pane1 = boxPanel(characterComps.get(0), 0, true);
         pane2 = boxPanel(characterComps.get(1), 1, true);
         pane3 = boxPanel(characterComps.get(2), 2, true);
     }
 
+    // Initialize the character (At initStage() function)
     protected void initCharacter(){
         isP1Dead = false;
         isP2Dead = false;
@@ -275,21 +328,33 @@ public class RPSApp extends GameApplication {
         SpriteData spriteFighter = new SpriteData("characters/Fighter.png", 6, 64, 64, 0, 9, 1);
 
         // Input Character into Data
-        characterDataComps.add(new CharacterComponent("Hero", "Justice", "", 1,10,1,2, spriteHero));
+        characterDataComps.add(new CharacterComponent("Hero", "Justice", "", 1,10,3,2, spriteHero));
         characterDataComps.add(new CharacterComponent("Wizard", "Fireball", "", 1,5,1,3, spriteWizard));
         characterDataComps.add(new CharacterComponent("Healer", "Heal", "",1,6,1,1, spriteHealer));
-        characterDataComps.add(new CharacterComponent("Guard", "Guard Team", "", 1,15,1,1, spriteGuard));
-        characterDataComps.add(new CharacterComponent("Fighter", "Pierce", "", 1,7,1,3, spriteFighter));
+        characterDataComps.add(new CharacterComponent("Guard", "Guard", "", 1,15,4,1, spriteGuard));
+        characterDataComps.add(new CharacterComponent("Fighter", "Pierce", "", 1,7,2,3, spriteFighter));
 
         // Select Random Character
-        characterComps.add(characterDataComps.get(0));
-        characterComps.add(characterDataComps.get(1));
-        characterComps.add(characterDataComps.get(2));
+        int randomNum = randomNumGenerator(0,2);
+        if(randomNum == 0){
+            characterComps.add(characterDataComps.get(3));
+            characterComps.add(characterDataComps.get(1));
+            characterComps.add(characterDataComps.get(2));
+        } else if(randomNum == 1){
+            characterComps.add(characterDataComps.get(3));
+            characterComps.add(characterDataComps.get(1));
+            characterComps.add(characterDataComps.get(4));
+        } else if(randomNum == 2){
+            characterComps.add(characterDataComps.get(0));
+            characterComps.add(characterDataComps.get(4));
+            characterComps.add(characterDataComps.get(2));
+        } else {
+            characterComps.add(characterDataComps.get(0));
+            characterComps.add(characterDataComps.get(1));
+            characterComps.add(characterDataComps.get(2));
+        }
 
-//        p1 = FXGL.entityBuilder()
-//                .at(185, 500)
-//                .with(new AnimationComponent(new SpriteData("characters/Hero.png", 6, 64, 64, 0, 9, 1)))
-//                .buildAndAttach();
+        // Build the player
         p1 = FXGL.entityBuilder()
                 .at(295, 460)
                 .with(new AnimationComponent(characterComps.get(0).getSpriteData(), true))
@@ -304,6 +369,7 @@ public class RPSApp extends GameApplication {
                 .buildAndAttach();
     }
 
+    // Initialize the enemy (Only call once at initStage() function)
     protected void initEnemy(){
         isBoss = false;
         isEnemyDead = false;
@@ -311,12 +377,16 @@ public class RPSApp extends GameApplication {
         // Sprite Data
         SpriteData spriteFighter = new SpriteData("characters/Fighter.png", 6, 64, 64, 0, 9, 1);
         SpriteData spriteHero = new SpriteData("characters/Hero.png", 6, 64, 64, 0, 9, 1);
+        SpriteData spriteGuard = new SpriteData("characters/Guard.png", 6, 64, 64, 0, 9, 1);
 
-        enemyComps.add(new CharacterComponent("Noob Fighter", "Weak Attack", "", 1,50,1,20, spriteFighter));
+        // Input enemy into Data
+        enemyComps.add(new CharacterComponent("Noob Fighter", "Weak Attack", "", 1,5,1,1, spriteFighter));
         enemyComps.add(new CharacterComponent("Evil Fighter", "Big DAMAGE", "", 1,9,3,3, spriteFighter));
         enemyComps.add(new CharacterComponent("Evil Hero", "Evil Attack", "", 1,8,2,2, spriteHero));
         enemyComps.add(new CharacterComponent("Super Evil Hero", "Super Attack", "", 1,12,4,2, spriteHero));
+        enemyComps.add(new CharacterComponent("Shield Maniac", "Shield Bash", "", 1,2,10,2, spriteGuard));
 
+        // Build enemy
         enemy = FXGL.entityBuilder()
                 .at(830, 460)
                 .with(new AnimationComponent(enemyComps.get(enemyID).getSpriteData(), false))
@@ -324,15 +394,19 @@ public class RPSApp extends GameApplication {
         paneEnemy = boxPanel(enemyComps.get(enemyID), 0, false);
     }
 
+    // Spawn enemy (At nextStage() function)
     protected void spawnEnemy(){
+        // Make enemy boss every 5 level (Can deal 1-2 times damage)
         if(stage % 5 == 0){
             isBoss = true;
         } else {
             isBoss = false;
         }
+        // Set the isEnemyDead false
         isEnemyDead = false;
 
-        enemyID = randomNumGenerator(0, 3);
+        // Spawn random enemy
+        enemyID = randomNumGenerator(0, 4);
         enemy = FXGL.entityBuilder()
                 .at(830, 460)
                 .with(new AnimationComponent(enemyComps.get(enemyID).getSpriteData(), false))
@@ -340,12 +414,14 @@ public class RPSApp extends GameApplication {
 
         paneEnemy = boxPanel(enemyComps.get(enemyID), 0, false);
     }
+
+    // Start the Rock Paper Scissor part
     protected void startRPS() {
+        // Check if p1, p2, p3 dead or alive. If dead, it will be game over
         if(isP1Dead && isP2Dead && isP3Dead){
-            System.out.println("GameOver");
             GameOver();
         } else {
-            System.out.println("Start RPS");
+            // Set visible, boolean, and labelStage text
             rock.setVisible(true);
             paper.setVisible(true);
             scissor.setVisible(true);
@@ -357,6 +433,7 @@ public class RPSApp extends GameApplication {
         }
     }
 
+    // Add character and enemy stats (At nextStage() function)
     protected void addStats(CharacterComponent CC, boolean isEnemy){
         int CC_Level = CC.getLevel() + 1;
         int CC_MaxHP = CC.getMaxHp();
@@ -401,7 +478,7 @@ public class RPSApp extends GameApplication {
         // Damage
         double randomDamage = Math.random();
         if(randomDamage <= 0.00005){
-            CC.setDamage(CC_Damage + 10 + damageBoost);
+            CC.setDamage(CC_Damage + 10 + damageBoost); // For fun
         } else if (randomDamage <= 0.1) {
             CC.setDamage(CC_Damage + 2 + damageBoost);
         }else if (randomDamage <= 0.4) {
@@ -410,10 +487,13 @@ public class RPSApp extends GameApplication {
             CC.setDamage(CC_Damage + damageBoost);
         }
     }
+
+    // randomNumGenerator to generate pseudo int random number between the minimal and the maximal
     protected int randomNumGenerator(int min, int max){
         return ThreadLocalRandom.current().nextInt(min, max + 1);
     }
 
+    // Create the box panel
     protected Pane boxPanel(CharacterComponent CC, int num, boolean isPlayer){
         Rectangle bgRect = new Rectangle(190, 150);
         int x = 5;
@@ -476,62 +556,86 @@ public class RPSApp extends GameApplication {
 
     }
 
-    // Coding for Enemy Random Pick RPS
-    protected String enemyNormalPick(){
+    // Enemy Random Pick RPS
+    protected String enemyNormalPick(String playerPick){
         double random = Math.random();
         String enemyPick = "rock";
-        if (random <= 0.333333333333) {
-            enemyPick = "paper";
-        } else if (random <= 0.6666666666) {
-            enemyPick = "scissor";
+
+        // If not cheating mode, 33% random pick
+        if(!isCheatingMode){
+            if (random <= 0.333333333333) {
+                enemyPick = "paper";
+            } else if (random <= 0.6666666666) {
+                enemyPick = "scissor";
+            }
+        } else {
+            // If cheating mode, 50% Win, 30% Draw, 20% Lose
+            if(playerPick.equals("rock")){
+                enemyPick = "scissor";
+                if (random <= 0.2) {
+                    enemyPick = "paper";
+                } else if (random <= 0.5) {
+                    enemyPick = "rock";
+                }
+            } else if (playerPick.equals("paper")) {
+                enemyPick = "rock";
+                if (random <= 0.2) {
+                    enemyPick = "scissor";
+                } else if (random <= 0.5) {
+                    enemyPick = "paper";
+                }
+            } else {
+                // When player pick scissor
+                enemyPick = "paper";
+                if (random <= 0.2) {
+                    enemyPick = "rock";
+                } else if (random <= 0.5) {
+                    enemyPick = "scissor";
+                }
+            }
         }
         return enemyPick;
     }
+
+    // Check Win, Draw, or Lose in Rock Paper Scissor
     protected void calculateEnemyRPS(String playerPick) {
-        String enemyPick = enemyNormalPick();
+        String enemyPick = enemyNormalPick(playerPick);
 
         // Check Player vs Enemy in RPS (Win or Draw or Lose)
         String resultRPS = "";
         if (playerPick.equals("rock")) {
             if (enemyPick.equals("rock")) {
                 resultRPS = "Draw";
-                System.out.println(playerPick + " + " + enemyPick + " = Draw");
             } else if (enemyPick.equals("paper")) {
                 resultRPS = "Lose";
-                System.out.println(playerPick + " + " + enemyPick + " = Lose");
             } else {
                 resultRPS = "Win";
-                System.out.println(playerPick + " + " + enemyPick + " = Win");
             }
         } else if (playerPick.equals("paper")) {
             if (enemyPick.equals("rock")) {
                 resultRPS = "Win";
-                System.out.println(playerPick + " + " + enemyPick + " = Win");
             } else if (enemyPick.equals("paper")) {
                 resultRPS = "Draw";
-                System.out.println(playerPick + " + " + enemyPick + " = Draw");
             } else {
                 resultRPS = "Lose";
-                System.out.println(playerPick + " + " + enemyPick + " = Lose");
             }
         } else {
             if (enemyPick.equals("rock")) {
                 resultRPS = "Lose";
-                System.out.println(playerPick + " + " + enemyPick + " = Lose");
             } else if (enemyPick.equals("paper")) {
                 resultRPS = "Win";
-                System.out.println(playerPick + " + " + enemyPick + " = Win");
             } else {
                 resultRPS = "Draw";
-                System.out.println(playerPick + " + " + enemyPick + " = Draw");
             }
         }
+        // Go to TransitionRPS
         TransitionRPS(playerPick, enemyPick, resultRPS);
         rock.setVisible(false);
         paper.setVisible(false);
         scissor.setVisible(false);
     }
 
+    // To transition the rock paper scissor image of the player
     protected void TransitionRPS(String playerType, String enemyType, String inputResult) {
         Texture rockTT = FXGL.texture("ui/Rock.png");
         Texture paperTT = FXGL.texture("ui/Paper.jpeg");
@@ -551,6 +655,7 @@ public class RPSApp extends GameApplication {
         TranslateTransition ttRock = new TranslateTransition(Duration.seconds(2), rockTT);
         TranslateTransition ttPaper = new TranslateTransition(Duration.seconds(2), paperTT);
         TranslateTransition ttScissor = new TranslateTransition(Duration.seconds(2), scissorTT);
+        // Check Player Pick and Transition
         if (playerType.equals("rock")) {
             rockTT.setVisible(true);
             ttRock.setInterpolator(Interpolators.ELASTIC.EASE_OUT());
@@ -603,6 +708,7 @@ public class RPSApp extends GameApplication {
         timeLine.play();
     }
 
+    // To transition the rock paper scissor image of the enemy
     protected void enemyTransition(String enemy, String input) {
         // Set Text
         Text result = new Text();
@@ -617,6 +723,7 @@ public class RPSApp extends GameApplication {
         Texture rockTT = FXGL.texture("ui/Rock.png");
         Texture paperTT = FXGL.texture("ui/Paper.jpeg");
         Texture scissorTT = FXGL.texture("ui/Scissor.png");
+        // setScaleX negative to mirror from right to left
         rockTT.setScaleX(-0.3);
         rockTT.setScaleY(0.3);
         paperTT.setScaleX(-0.3);
@@ -632,7 +739,7 @@ public class RPSApp extends GameApplication {
         TranslateTransition ttRock = new TranslateTransition(Duration.seconds(2), rockTT);
         TranslateTransition ttPaper = new TranslateTransition(Duration.seconds(2), paperTT);
         TranslateTransition ttScissor = new TranslateTransition(Duration.seconds(2), scissorTT);
-        // Check Enemy Pick and Translation
+        // Check Enemy Pick and Transition
         if (enemy.equals("rock")) {
             rockTT.setVisible(true);
             ttRock.setInterpolator(Interpolators.ELASTIC.EASE_OUT());
@@ -682,17 +789,19 @@ public class RPSApp extends GameApplication {
                 ));
         timeLine.setOnFinished(e -> {
             removeUINode(pane);
-            battleTime(input);
+            battleTime(input); // Go to battleTime() function
         });
         timeLine.play();
     }
 
+    // After Rock Paper Scissor, player and enemy can attack depending on the RPS result
     protected void battleTime(String result) {
         labelInfo.setVisible(true);
         bgLabelInfo.setVisible(true);
         Pane pane = new Pane(labelInfo);
         addUINode(pane);
 
+        // Set timeLineBattle delay or timer
         timeLineBattle.setOnFinished(e -> {
             removeUINode(pane);
             round += 1;
@@ -702,21 +811,18 @@ public class RPSApp extends GameApplication {
         // Check Result Condition
         if(result.equals("Win")){
             // When Win, Player attack, Enemy do not attack
-            System.out.println("WIN");
             labelInfo.setText("Pick your skills from the character");
             isDraw = false;
             highlight.setVisible(true);
             finishBattle.setVisible(true);
         } else if(result.equals("Draw")){
             // When Draw, Player attack, Enemy attack
-            System.out.println("DRAW");
             labelInfo.setText("Pick your skills from the character");
             isDraw = true;
             highlight.setVisible(true);
             finishBattle.setVisible(true);
         } else if(result.equals("Lose")){
             // When Lose, Player attack, Enemy do not attack
-            System.out.println("LOSE");
             labelInfo.setText("You LOSE! You cannot attack!");
 
             // Delay
@@ -732,6 +838,7 @@ public class RPSApp extends GameApplication {
         }
     }
 
+    // Character Attack Function
     protected void characterAttack(){
         boolean isAttack = false;
         CharacterComponent enemyCC = enemyComps.get(enemyID);
@@ -742,8 +849,9 @@ public class RPSApp extends GameApplication {
         int p1Hp, p2Hp, p3Hp, p1MaxHp, p2MaxHp, p3MaxHp;
         String skillName = actingCharacter.getSkillName();
 
-        // Check Which Skill
+        // Check Which Skill (Check the player skill name)
         if(skillName.equals("Justice")){
+            // Justice deal 1-2 times the player damage
             isAttack = true;
             damage = damage * randomNumGenerator(1, 2);
             damageAfterShield = damage - enemyShield;
@@ -758,6 +866,7 @@ public class RPSApp extends GameApplication {
             }
             labelInfo.setText("Deal " + damage + " damage to Enemy" );
         } else if (skillName.equals("Fireball")) {
+            // Fireball deal 0-3 times the player damage
             isAttack = true;
             damage = damage * randomNumGenerator(0, 3);
             damageAfterShield = damage - enemyShield;
@@ -772,17 +881,20 @@ public class RPSApp extends GameApplication {
             }
             labelInfo.setText("Deal " + damage + " damage to Enemy" );
         } else if (skillName.equals("Pierce")) {
+            // Pierce deal damage to the enemy hp (Enemy Shield is ignored)
             isAttack = true;
             enemyHp = enemyHp - damage;
             enemyCC.getHp().damage(damage);
             labelInfo.setText("Deal " + damage + " true damage to Enemy" );
         } else if (skillName.equals("Heal")) {
+            // Heal set everyone hp to +(healer damage)
             p1Hp = characterComps.get(0).getCurrentHp();
             p2Hp = characterComps.get(1).getCurrentHp();
             p3Hp = characterComps.get(2).getCurrentHp();
             p1MaxHp = characterComps.get(0).getMaxHp();
             p2MaxHp = characterComps.get(1).getMaxHp();
             p3MaxHp = characterComps.get(2).getMaxHp();
+            // Check if HP + damage will be above maxHP or not
             if(p1MaxHp > p1Hp + damage){
                 characterComps.get(0).getHp().setValue(p1Hp + damage);
                 characterComps.get(0).setCurrentHp(p1Hp + damage);
@@ -805,9 +917,14 @@ public class RPSApp extends GameApplication {
                 characterComps.get(2).setCurrentHp(p3MaxHp);
             }
             labelInfo.setText("Heal " + damage + " Hp to all" );
-        } else if(skillName.equals("Guard Team")){
+        } else if(skillName.equals("Guard")){
+            // Guard cause enemy to only attack guard and deal 0-1 times damage. If guard skill is used again, it will deactivate the skill.
             isAttack = true;
-            isGuard = true;
+            if(!isGuard){
+                isGuard = true;
+            } else {
+                isGuard = false;
+            }
             damage = damage * randomNumGenerator(0, 1);
             damageAfterShield = damage - enemyShield;
             if(damageAfterShield >= 0){
@@ -821,10 +938,13 @@ public class RPSApp extends GameApplication {
             }
             labelInfo.setText("Deal " + damage + " damage to Enemy" );
         }
+        // If the character attack, check if the enemy hp is 0 or below 0
         if(isAttack){
             if(enemyHp <= 0){
+                // If below or equal to 0, enemy is dead and stage is clear. Hence, it will start endStage() function
                 isEnemyDead = true;
-                // Delay End Stage
+
+                // Delay endStage() Function
                 Timeline delayEndStage = new Timeline(
                         new KeyFrame(Duration.seconds(1.5)
                         ));
@@ -839,7 +959,7 @@ public class RPSApp extends GameApplication {
                 int finalRandomNum = 0;
                 delay.setOnFinished(e -> {
                     labelInfo.setText("Enemy " + enemyCC.getName() + " die");
-                    FXGL.play("hurt.wav");
+                    FXGL.play("hurt.wav"); // Play Hurt Sound
                     delayEndStage.play();
                 });
                 delay.play();
@@ -849,21 +969,24 @@ public class RPSApp extends GameApplication {
                 enemyCC.setCurrentShield(enemyShield);
             }
         }
-        System.out.println("Success Character Attack");
     }
 
+    // Enemy Attack Function
     protected void enemyAttack(){
         int enemyDamage = enemyComps.get(enemyID).getDamage();
+        // Check if enemy is a Boss or not
         if(isBoss){
             enemyDamage = enemyDamage * randomNumGenerator(1,2);
         }
         int damageAfterShield;
+        // randomNum is to set the random target that the enemy will attack
         int randomNum = randomNumGenerator(0, 2);
+        // If isGuard skill is true or activate, it will only attack the guard
         if(isGuard){
-            randomNum = selectedBox;
+            randomNum = 0; // Set 0 since the guard is at 0
         }
 
-        //Check Character Alive or Dead
+        // Check Character Alive or Dead (To set the target for the enemy)
         if(randomNum == 0 && isP1Dead){
             randomNum = randomNumGenerator(1,2);
             if (randomNum == 1 && isP2Dead) {
@@ -891,6 +1014,7 @@ public class RPSApp extends GameApplication {
         int playerHP = CC.getCurrentHp();
         int playerShield = CC.getCurrentShield();
         damageAfterShield = enemyDamage - playerShield;
+        // Check if enemy is dead or not. If dead, then the enemy cannot attack
         if(!isEnemyDead){
             if(damageAfterShield >= 0){
                 CC.getShield().damage(playerShield);
@@ -903,15 +1027,14 @@ public class RPSApp extends GameApplication {
             }
         }
 
+        // Check if enemy is dead or not
         if(!isEnemyDead){
             labelInfo.setText("Enemy deal " + enemyDamage + " damage to " + CC.getName());
-            System.out.println("Enemy deal " + enemyDamage + " damage to " + CC.getName());
-        } else {
-            System.out.println("Enemy Died");
         }
 
-
+        // Check playerHP is 0 or below 0. If below 0, the character is dead
         if(playerHP <= 0){
+
             // Delay
             Timeline delay = new Timeline(
                     new KeyFrame(Duration.seconds(0.8)
@@ -919,22 +1042,23 @@ public class RPSApp extends GameApplication {
             int finalRandomNum = randomNum;
             delay.setOnFinished(e -> {
                 labelInfo.setText("Your " + CC.getName() + " die");
-                characterDead(CC, finalRandomNum);
+                characterDead(CC, finalRandomNum); // Go to characterDead() function
                 if(selectedBox == finalRandomNum){
-                    selectHighLightBox(finalRandomNum);
+                    selectHighLightBox(finalRandomNum); // Go to selectHighLightBox() function
                 }
             });
             delay.play();
         } else {
+            // Check if enemy is dead or not
             if(!isEnemyDead){
-                System.out.println(isEnemyDead);
-                FXGL.play("hurt.wav");
+                FXGL.play("hurt.wav"); // Play Hurt Sound
                 CC.setCurrentHp(playerHP);
                 CC.setCurrentShield(playerShield);
             }
         }
-        System.out.println("Success Enemy Attack");
     }
+
+    // Set the character to dead by removing the player and panel, then set isP{number}Dead true
     protected void characterDead(CharacterComponent CC, int num){
         if(CC.getSkillName().equals("Guard Team")){
             isGuard = false;
@@ -954,8 +1078,9 @@ public class RPSApp extends GameApplication {
             p3.removeFromWorld();
             removeUINode(pane3);
         }
-        System.out.println("P1Dead: " + isP1Dead + "P2Dead: " + isP2Dead + "P3Dead: " + isP3Dead);
     }
+
+    // Set the selectedBox and actingCharacter to alive player
     protected void selectHighLightBox(int num){
         if (num == 0){
             if(!isP2Dead){
@@ -982,7 +1107,10 @@ public class RPSApp extends GameApplication {
                 actingCharacter = characterComps.get(1);
             }
         }
+        highlight.setPosition(3, 100 + 180*selectedBox - 12);
     }
+
+    // End Stage (End the stage by removing the box panels and enemy)
     protected void endStage(){
         stage = stage + 1;
         round = 0;
@@ -996,10 +1124,12 @@ public class RPSApp extends GameApplication {
         // Remove Enemy
         enemy.removeFromWorld();
 
+        // Go to the endStageScene() and nextStage() function
         endStageScene();
         nextStage();
     }
 
+    // Set the End Stage Scene
     protected void endStageScene() {
         Rectangle rect1 = new Rectangle(getAppWidth(), getAppHeight() / 2.0, Color.web("#333333"));
         Rectangle rect2 = new Rectangle(getAppWidth(), getAppHeight() / 2.0, Color.web("#333333"));
@@ -1027,7 +1157,10 @@ public class RPSApp extends GameApplication {
         });
         pt.play();
     }
+
+    // Set the GameOver scene and function
     protected void GameOver(){
+        // Update the HighScore into the database
         int tempScore;
         if(stage > highScore){
             tempScore = stage;
@@ -1036,22 +1169,22 @@ public class RPSApp extends GameApplication {
         }
         updateHighScore(tempScore);
 
-        Texture gameOver = texture("ui/GameOver.png");
-        gameOver.setScaleX(2);
-        gameOver.setScaleY(2);
-        gameOver.setTranslateY(getAppHeight() - gameOver.getHeight() - 100);
-        gameOver.setTranslateX(gameOver.getWidth() / 2.0);
-        TranslateTransition tt = new TranslateTransition(Duration.seconds(3.8), gameOver);
-        tt.setInterpolator(Interpolators.ELASTIC.EASE_OUT());
-        tt.setToY(getAppHeight() / 2.0 - gameOver.getHeight() / 2);
-        tt.setOnFinished(e -> {
-            gameOver.setTranslateY(getAppHeight() - gameOver.getHeight() + 24);
-            getGameController().gotoMainMenu();
-        });
-        tt.play();
+        // Show Game Over
+        labelInfo.setText("GAME OVER");
+        gameOver.setVisible(true);
 
+        // Delay
+        Timeline delay = new Timeline(
+                new KeyFrame(Duration.seconds(3)
+                ));
+        delay.setOnFinished(e -> {
+            gameSound.stop(); // Stop Game Music Background
+            getGameController().gotoMainMenu(); // Go To Main Menu (The login and registration page)
+            });
+        delay.play();
     }
 
+    // Update High Score Function
     private boolean updateHighScore(int score) {
         JdbcUtils jdbcUtils = new JdbcUtils();
         jdbcUtils.getConnection();

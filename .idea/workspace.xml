@@ -5,23 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="09630b29-dc79-4ac5-aec5-5f63d1aac8d1" name="Changes" comment="Battle Coding Almost Done. Fix some bugs">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/sounds/gameMusic.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/sounds/hurt.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/sounds/mainMenuHover.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/sounds/mainMenuLoad.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/sounds/mainMenuMusic.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/sounds/select.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/characters/heroIcon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/ui/GameOver.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/ui/attack.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/ui/point.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/ui/Cheat.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/ui/NoCheat.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/GameConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/GameEntityFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/GameEntityFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/RPSApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/RPSApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/animation/AnimationComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/animation/AnimationComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/component/CharacterComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/component/CharacterComponent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/db/JdbcUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/db/JdbcUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/view/GameMainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/view/GameMainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/view/GameStartupScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/view/GameStartupScene.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RPS/view/MainMenuButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RPS/view/MainMenuButton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/textures/ui/attack.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/ui/Attack.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/textures/ui/cursor.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/ui/Cursor.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/textures/ui/point.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/ui/Point.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +59,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Project/Java/MovieManagement",
+    "last_opened_file_path": "C:/Project/Java/CSC1004-Java-Games/src/main/resources/assets/textures/ui",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -182,6 +179,7 @@
       <workItem from="1683574079727" duration="53000" />
       <workItem from="1683610041604" duration="13541000" />
       <workItem from="1683625169104" duration="4152000" />
+      <workItem from="1683767891257" duration="12284000" />
     </task>
     <task id="LOCAL-00001" summary="Login GUI 1">
       <created>1677209604842</created>

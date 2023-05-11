@@ -39,6 +39,8 @@ public class GameMainMenu extends FXGLMenu {
     private final Pane defaultPane;
     private String userName;
     private int highScore;
+
+    // Verify the Username and Password by checking it in the database
     private boolean verify(String username, String password) {
         JdbcUtils jdbcUtils = new JdbcUtils();
         jdbcUtils.getConnection();
@@ -55,6 +57,7 @@ public class GameMainMenu extends FXGLMenu {
         return false;
     }
 
+    // Check if the username already exist or not
     private boolean exists(String username) {
         JdbcUtils jdbcUtils = new JdbcUtils();
         jdbcUtils.getConnection();
@@ -70,6 +73,7 @@ public class GameMainMenu extends FXGLMenu {
         return false;
     }
 
+    // Insert the data from the registration input (Text Field Input) to the database
     private boolean signUp(String username, String password, String email, String age, String gender) {
         JdbcUtils jdbcUtils = new JdbcUtils();
         jdbcUtils.getConnection();
@@ -90,6 +94,7 @@ public class GameMainMenu extends FXGLMenu {
         return false;
     }
 
+    // Get the highscore of the username from the database
     private int getHighScore(String username) {
         JdbcUtils jdbcUtils = new JdbcUtils();
         jdbcUtils.getConnection();
@@ -108,12 +113,13 @@ public class GameMainMenu extends FXGLMenu {
     public GameMainMenu() {
         super(MenuType.MAIN_MENU);
 
+        // Play Background Music
         Media media = new Media(getClass().getResource("/assets/sounds/mainMenuMusic.wav").toExternalForm());
         MediaPlayer mainMenuSound = new MediaPlayer(media);
-        mainMenuSound.play();
         mainMenuSound.setCycleCount(MediaPlayer.INDEFINITE);
         mainMenuSound.setVolume(0.3);
 
+        // Initialize and Set Image
         Texture background = texture("menu/BackGroundScreen_Day.jpg");
         background.setLayoutX(-480);
         background.setLayoutY(-180);
@@ -121,6 +127,7 @@ public class GameMainMenu extends FXGLMenu {
         background.setScaleY(0.7);
         background.setVisible(true);
 
+        // Initialize and Set Image
         Texture character = texture("menu/Character.png");
         character.setLayoutX(90);
         character.setLayoutY(380);
@@ -128,6 +135,7 @@ public class GameMainMenu extends FXGLMenu {
         character.setScaleY(1.8);
         character.setVisible(true);
 
+        // Initialize and Set Image
         Texture bubbleBox = texture("menu/TextBubble.png");
         bubbleBox.setLayoutX(-75);
         bubbleBox.setLayoutY(-130);
@@ -136,17 +144,23 @@ public class GameMainMenu extends FXGLMenu {
         bubbleBox.setScaleY(0.22);
         bubbleBox.setVisible(true);
 
+        // Initialize and Set Title Text
         var titleText = FXGL.getUIFactoryService().newText("Rock Paper Scissor RPG", Color.BLACK, FontType.MONO, 48);
         titleText.setLayoutX(170);
-        titleText.setLayoutY(140);                                                                                                var bubbleText1 = FXGL.getUIFactoryService().newText("Welcome!", Color.BLACK, FontType.MONO, 30);
-                                                                                                                                       bubbleText1.setLayoutX(310);
+        titleText.setLayoutY(140);
+
+        // Initialize and Set Bubble Text V1 ("Welcome")
+        var bubbleText1 = FXGL.getUIFactoryService().newText("Welcome!", Color.BLACK, FontType.MONO, 30);
+        bubbleText1.setLayoutX(310);
         bubbleText1.setLayoutY(245);
 
+        // Initialize and Set Bubble Text V2 ("HighScore: ")
         var bubbleText2 = FXGL.getUIFactoryService().newText("", Color.BLACK, FontType.MONO, 20);
         bubbleText2.setLayoutX(298);
         bubbleText2.setLayoutY(245);
         bubbleText2.setVisible(false);
 
+        // Set Main Menu Box
         MainMenuButton newGameBtn = new MainMenuButton("START GAME", () -> {
            mainMenuSound.stop();
             RPSApp.setData(userName, highScore);
@@ -166,7 +180,7 @@ public class GameMainMenu extends FXGLMenu {
         menuBox.setLayoutY(400);
         menuBox.setVisible(false);
 
-
+        // Initialize and Set Rectangle as a background
         Rectangle bgRect = new Rectangle(330, 220);
         bgRect.setLayoutX(520);
         bgRect.setLayoutY(320);
@@ -177,22 +191,26 @@ public class GameMainMenu extends FXGLMenu {
         bgRect2.setLayoutY(220);
         bgRect2.setOpacity(0.65);
         bgRect2.setVisible(false);
+        // Initialize and Set Line
         Line line = new Line(140, 160, 820, 160); //x,y x,y
         line.setStroke(Color.web("#000000"));
         line.setStrokeWidth(5);
 
+        // Create loginBox (or Sign In)
         VBox loginBox = new VBox(6);
         loginBox.setAlignment(Pos.CENTER_LEFT);
         loginBox.setLayoutX(550);
         loginBox.setLayoutY(360);
         loginBox.setVisible(false);
 
+        // Create signUpBox (or Register)
         VBox signUpBox = new VBox(9);
         signUpBox.setAlignment(Pos.CENTER_LEFT);
         signUpBox.setLayoutX(550);
         signUpBox.setLayoutY(260);
         signUpBox.setVisible(false);
 
+        // Create Text Field for Login Username and Password
         TextField loginUsername = new TextField();
         loginUsername.setId("inputText");
         loginUsername.setPromptText("Username");
@@ -201,6 +219,7 @@ public class GameMainMenu extends FXGLMenu {
         loginPassword.setId("inputText");
         loginPassword.setPromptText("Password");
 
+        // Create Text Field for Register Username, Password, Check Password, Email, Age, and Gender
         TextField signUpUsername = new TextField();
         signUpUsername.setId("inputText");
         signUpUsername.setPromptText("Username");
@@ -225,13 +244,14 @@ public class GameMainMenu extends FXGLMenu {
         signUpGender.setId("inputText");
         signUpGender.setPromptText("Male or Female");
 
-
+        // Create Login and Register Label
         Label loginLabel = new Label();
         loginLabel.setId("label");
 
         Label registerLabel = new Label();
         registerLabel.setId("label");
 
+        // Create and Set Register Button (To insert the input into database and change from register form to login form)
         Button registerBtn = new Button();
         registerBtn.setId("loginBtn");
         registerBtn.setText("Register");
@@ -252,6 +272,7 @@ public class GameMainMenu extends FXGLMenu {
             }
         });
 
+        // Create and Set Sign Up Button (To change from login form to register form)
         Button toSignUpBtn = new Button();
         toSignUpBtn.setId("loginBtn");
         toSignUpBtn.setText("Register");
@@ -261,14 +282,12 @@ public class GameMainMenu extends FXGLMenu {
             bgRect2.setVisible(true);
         });
 
-
+        // Create and Set Login Button (To check the username and password with the data in the database (SQL), If correct go to main menu form)
         Button loginBtn = new Button();
         loginBtn.setId("loginBtn");
         loginBtn.setText("Login");
         loginBtn.setOnAction(event -> {
             if (verify(loginUsername.getText(), loginPassword.getText())) {
-                System.out.println("Test1 "+ verify(loginUsername.getText(), loginPassword.getText()));
-                System.out.println(loginUsername.getText() + "  " + loginPassword.getText());
                 loginBox.setVisible(false);
                 bubbleText1.setVisible(false);
                 bubbleText2.setVisible(true);
@@ -298,6 +317,7 @@ public class GameMainMenu extends FXGLMenu {
                 registerLabel,
                 registerBtn);
 
+        // Set the rock paper scissor transition to play at the beginning of the app
         Texture rock = FXGL.texture("ui/Rock.png");
         Texture paper = FXGL.texture("ui/Paper.jpeg");
         Texture scissor = FXGL.texture("ui/Scissor.png");
@@ -337,8 +357,13 @@ public class GameMainMenu extends FXGLMenu {
         tt3.setOnFinished(e -> {
             loginBox.setVisible(true);
             bgRect.setVisible(true);
+            menuBox.setVisible(false);
+            bubbleText2.setVisible(false);
+            bubbleText1.setVisible(true);
+            mainMenuSound.play();
         });
 
+        // Add all objects into the pane
         defaultPane = new Pane(background, bgRect, bgRect2, bubbleBox, bubbleText2, bubbleText1, character, titleText, rock, paper, scissor, loginBox, menuBox, signUpBox, line);
         getContentRoot().getChildren().setAll(defaultPane);
     }
